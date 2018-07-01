@@ -1,0 +1,234 @@
+<div id="request_package" class="modal" data-backdrop="static" data-keyboard="false" ng-controller="reqPkgFormsController">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="closebtnmodal">
+                <button type="button" 
+                        class="close" 
+                        data-dismiss="modal" 
+                        ng-click="resetForm()">
+                    &times;
+                </button>
+            </div>
+            <div>
+            <h3>Request Package: {{ destiData.name }}</h3>
+            <p>You can request package for Day Tour or longer days:</p>
+            <p class="text-legend text-required"> <b>*</b> Denotes Required Fields </p>
+            <form name="RequestPkgForm" ng-submit="submitReqPkgForm(RequestPkgForm.$valid)" novalidate>
+                <div ng-show="success">
+                    <div class="alert alert-success fade show">
+                        <a ng-click="hideAlert()" class="close" >&times;</a>
+                        <strong>Success!</strong> Requested Package will be sent on your email.
+                    </div>
+                </div>
+                <div class="travel-section">
+                    <h5>Travel Details:</h5>
+                    <div class="travel-textbox">
+                        
+                        <div class="row">
+                        <div class="wrapper-text col-12 seat_wrapper">
+                            <div class="box-text">
+                                <div class="text-content">Duration</div>
+                            </div><span class="dropdown-style">
+                                <select name="duration" 
+                                        ng-model="RequestPkgFormData.duration" 
+                                        required>
+                                    <option ng-repeat="duration in durationChoices" 
+                                            value="{{ duration.value }}" 
+                                            ng-selected="selectedItemValue == duration.value" 
+                                            ng-disabled="selectedItemValue == duration.value">
+                                        {{ duration.name }}
+                                    </option>
+                                </select>
+                            </span>
+                        </div>
+                        <div class="wrapper-text col-12" 
+                             ng-show="RequestPkgFormData.duration == 'otherDays'">
+                            <div class="box-text"
+                                 ng-class="{ 'box-text-error' : RequestPkgForm.otherDuration.$touched && RequestPkgForm.otherDuration.$invalid }">
+                                <div class="text-content">Others</div>
+                            </div><input type="text" 
+                                         name="otherDuration" 
+                                         class="textbox others input-width" 
+                                         placeholder="Please specify your preferred tour duration *" 
+                                         ng-model="RequestPkgFormData.otherDuration" 
+                                         ng-class="{ 'textbox-error' : RequestPkgForm.otherDuration.$touched && RequestPkgForm.otherDuration.$invalid }"
+                                         ng-required="RequestPkgFormData.duration == 'otherDays'">
+                            <div ng-messages="RequestPkgForm.otherDuration.$error" 
+                                 ng-show="RequestPkgForm.otherDuration.$touched && RequestPkgForm.otherDuration.$invalid">
+                                <p class="text-error-msg no-padding" ng-message="required">Other tour duration is required.</p>
+                            </div>
+                        </div>
+                    </div>
+                    </div> <!-- END OF TRAVEL-TEXTBOX -->
+                <h5>Tour Details: <span class="text-required">*</span></h5>
+                    <div class="tours-radio">
+                                <ul class="row">
+                                    <li class="col-12 col-sm-4">
+                                        <label class="container_radio">Tour only
+                                            <input type="radio" 
+                                                   name="tours" 
+                                                   value="tourOnly" 
+                                                   ng-model="RequestPkgFormData.tours" 
+                                                   required>
+                                            <span class="radio_new"></span>
+                                        </label>
+                                    </li>
+                                    <li class="col-12 col-sm-4">
+                                        <label class="container_radio">Tour with accomodation
+                                            <input type="radio" 
+                                                   name="tours" 
+                                                   value="tourAccom" 
+                                                   ng-model="RequestPkgFormData.tours" 
+                                                   required>
+                                            <span class="radio_new"></span>
+                                        </label>
+                                    </li>
+                                    <li class="col-12 col-sm-4">
+                                        <label class="container_radio">Tour with transportation
+                                            <input type="radio" 
+                                                   name="tours" 
+                                                   value="tourTrans" 
+                                                   ng-model="RequestPkgFormData.tours" 
+                                                   required>
+                                            <span class="radio_new"></span>
+                                        </label>
+                                    </li>
+                                </ul>
+
+                                <ul class="row">
+                                    <li class="col-12 col-sm-6">
+                                        <label class="container_radio">Tour with accomodation &amp; transportation
+                                            <input type="radio" 
+                                                   name="tours" 
+                                                   value="tourAccomTrans" 
+                                                   ng-model="RequestPkgFormData.tours" 
+                                                   required>
+                                            <span class="radio_new"></span>
+                                        </label>
+                                    </li>
+                                    <li class="col-12 col-sm-6">
+                                        <label class="container_radio">Others:
+                                            <input type="radio" 
+                                                   name="tours" 
+                                                   value="tourOthers" 
+                                                   ng-model="RequestPkgFormData.tours" 
+                                                   required>
+                                            <span class="radio_new"></span>
+                                        </label><input type="text" 
+                                                       name="tourOthers" 
+                                                       class="textbox input-width-100" 
+                                                       placeholder="Others *" 
+                                                       ng-model="RequestPkgFormData.tourOthers" 
+                                                       ng-show="RequestPkgFormData.tours == 'tourOthers'"
+                                                       ng-class="{ 'textbox-error' : RequestPkgForm.tourOthers.$touched && RequestPkgForm.tourOthers.$invalid }"
+                                                       ng-required="RequestPkgFormData.tours == 'tourOthers'">
+                                        <div ng-messages="RequestPkgForm.tourOthers.$error"
+                                             ng-show="RequestPkgForm.tourOthers.$touched && RequestPkgForm.tourOthers.$invalid">
+                                    <p class="text-error-msg no-padding" ng-message="required">Other tour duration is required.</p>
+                                </div>
+                                    </li>
+                                </ul>
+                            </div> <!-- END OF TOURS RADIO -->
+
+                    <div class="row">
+                        <div class="wrapper-text col-12">
+                            <div class=box-text-field>
+                                <div class="text-content-field">Package Inclusions Request</div>
+                            </div><textarea name="inclusions_req" 
+                                            class="textfield" 
+                                            placeholder="Package Inclusions Request / Message" 
+                                            ng-model="RequestPkgFormData.inclusions"></textarea>
+                        </div> <!-- END OF TEXTAREA -->
+                    </div>
+                </div> <!-- END OF TRAVEL-SECTION -->
+
+                <div>
+                    <h5>Personal Information:</h5>
+                    <div class="personal-info row">
+                        <div class="wrapper-text col-sm-6" 
+                         ng-class="{ 'no-padding-bottom add-padding-top' : RequestPkgForm.fname.$touched && RequestPkgForm.fname.$invalid }">
+                        <div class="box-text" ng-class="{ 'box-text-error' : RequestPkgForm.fname.$touched && RequestPkgForm.fname.$invalid }">
+                            <div class="text-content">First Name</div>
+                        </div><input type="text" 
+                                     name="fname" 
+                                     class="textbox" 
+                                     placeholder="First Name *" 
+                                     ng-model="RequestPkgFormData.fname"
+                                     ng-pattern="text"
+                                     ng-class="{ 'textbox-error' : RequestPkgForm.fname.$touched && RequestPkgForm.fname.$invalid }" 
+                                     required>
+                        <div ng-messages="RequestPkgForm.fname.$error" 
+                             ng-show="RequestPkgForm.fname.$touched && RequestPkgForm.fname.$invalid">
+                            <p class="text-error-msg no-padding" ng-message="required">Your First Name is required.</p>
+                            <p class="text-error-msg no-padding" ng-message="pattern">Your First Name must be in alphabet letters.</p>
+                        </div>
+                    </div>
+
+                        <div class="wrapper-text col-sm-6" 
+                         ng-class="{ 'no-padding-bottom add-padding-top' : RequestPkgForm.lname.$touched && RequestPkgForm.lname.$invalid }">
+                        <div class="box-text"
+                             ng-class="{ 'box-text-error' : RequestPkgForm.lname.$touched && RequestPkgForm.lname.$invalid }">
+                            <div class="text-content">Last Name</div>
+                        </div><input type="text" 
+                                     name="lname" 
+                                     placeholder="Last Name *" 
+                                     class="textbox" 
+                                     ng-model="RequestPkgFormData.lname"
+                                     ng-pattern="text"
+                                     ng-class="{ 'textbox-error' : RequestPkgForm.lname.$touched && RequestPkgForm.lname.$invalid }"
+                                     required>
+                        <div ng-messages="RequestPkgForm.lname.$error"
+                             ng-show="RequestPkgForm.lname.$touched && RequestPkgForm.lname.$invalid">
+                            <p class="text-error-msg no-padding" ng-message="required">Your Last Name is required.</p>
+                            <p class="text-error-msg no-padding" ng-message="pattern">Your Last Name must be in alphabet letters.</p>
+                        </div>
+                    </div>
+
+                        <div class="wrapper-text col-sm-6" 
+                         ng-class="{ 'no-padding-bottom add-padding-top' : RequestPkgForm.email.$touched && RequestPkgForm.email.$invalid }">
+                        <div class=box-text
+                             ng-class="{ 'box-text-error' : RequestPkgForm.email.$touched && RequestPkgForm.email.$invalid }">
+                            <div class="text-content">Email</div>
+                        </div><input type="email" 
+                                     name="email" 
+                                     placeholder="Email Address *" 
+                                     class="textbox" 
+                                     ng-model="RequestPkgFormData.email"
+                                     ng-class="{ 'textbox-error' : RequestPkgForm.email.$touched && RequestPkgForm.email.$invalid }"
+                                     required>
+                        <div ng-messages="RequestPkgForm.email.$error" 
+                             ng-show="RequestPkgForm.email.$touched && RequestPkgForm.email.$invalid">
+                            <p class="text-error-msg no-padding" ng-message="required">Your Email Address is required.</p>
+                            <p class="text-error-msg no-padding" ng-message="email">Please enter a valid Email Address.</p>
+                        </div>
+                    </div>
+
+                        <div class="wrapper-text col-sm-6"
+                         ng-class="{ 'no-padding-bottom add-padding-top' : RequestPkgForm.mobile.$touched && RequestPkgForm.mobile.$invalid }">
+                        <div class=box-text
+                             ng-class="{ 'box-text-error' : RequestPkgForm.mobile.$touched && RequestPkgForm.mobile.$invalid }">
+                            <div class="text-content">Mobile No.</div>
+                        </div><input type="text" 
+                                     name="mobile" 
+                                     placeholder="Mobile Number (09XXXXXXXXX)" 
+                                     class="textbox" 
+                                     ng-model="RequestPkgFormData.mobile" 
+                                     ng-pattern="regEx"
+                                     ng-class="{ 'textbox-error' : RequestPkgForm.mobile.$touched && RequestPkgForm.mobile.$invalid }">
+                        <div ng-messages="RequestPkgForm.mobile.$error" 
+                         ng-show="RequestPkgForm.mobile.$touched && RequestPkgForm.mobile.$invalid">
+                            <p class="text-error-msg no-padding" ng-message="pattern">Please enter a valid Mobile Number.</p>
+                        </div>
+                    </div>
+                    </div> <!-- END OF PERSONAL INFO -->
+                </div> <!-- END OF PARENT PERSONAL -->
+
+
+                <div class="submit-section">
+                    <button ng-disabled="RequestPkgForm.$invalid" type="submit" class="button_border">Submit</button>
+                </div> <!-- END OF SUBMIT-SECTION -->
+            </form>
+            </div>
+        </div> <!-- END OF MODAL-CONTENT -->
+    </div> <!-- END OF MODAL-DIALOG -->   
+</div> <!-- END OF MODAL --> 

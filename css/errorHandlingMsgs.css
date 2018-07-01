@@ -1,0 +1,52 @@
+/* css for error messages */
+p.text-error-msg {
+    position: relative;
+    display: block !important;
+    color: rgb(172, 51, 51, 1) !important;
+    margin-bottom: 0 !important;
+    padding-top: 10px;
+    text-align: center;
+    font-size: 12px !important;
+}
+.no-padding {
+    padding-top: 0px !important;
+}
+.no-padding-bottom {
+    padding-bottom: 0px !important;
+}
+.add-padding-top {
+    padding-top: 20px !important;
+}
+
+.box-text-error {
+    background-color: rgb(172, 51, 51, 1) !important;
+    border-color: rgb(172, 51, 51, 1) !important;
+}
+
+.textbox-error {
+    border-color: rgb(172, 51, 51, 1) !important;
+}
+
+.flexStart {
+    align-content: flex-start !important;
+}
+
+.date-invalid {
+    color: rgb(172, 51, 51, .50) !important;
+}
+
+.textbox-error::placeholder, 
+.textfield-error::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(172, 51, 51, .50) !important;
+    opacity: .50; /* Firefox */
+}
+
+.textbox-error::-ms-input-placeholder, 
+.textfield-error::-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: rgb(172, 51, 51, .50) !important;
+}
+
+.textbox-error::-ms-input-placeholder, 
+.textfield-error::-ms-input-placeholder { /* Microsoft Edge */
+    color: rgb(172, 51, 51, .50) !important;
+}

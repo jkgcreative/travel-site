@@ -1,0 +1,332 @@
+<div id="reserve_package" class="modal" data-backdrop="static" data-keyboard="false" ng-controller="reservePkgFormsController">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="closebtnmodal">
+                <button type="button" 
+                        class="close" 
+                        data-dismiss="modal" 
+                        ng-click="resetForm()">
+                    &times;
+                </button>
+            </div>
+            <div>
+            <h3>Reserve Package</h3>
+            <p class="text-legend text-required"> <b>*</b> Denotes Required Fields </p>
+            <form name="ReservePkgForm" ng-submit="submitReservePkgForm(ReservePkgForm.$valid)" novalidate>
+            <div ng-show="success">
+                <div class="alert alert-success fade show">
+                    <a ng-click="hideAlert()" class="close">&times;</a>
+                    <strong>Success!</strong> Your reservation has been sent. Confirmation will be sent to your email. Thank you!
+                </div>
+            </div>
+            <div>
+                    <h5>Personal Information:</h5>
+                    <div class="personal-info row">
+                        <div class="wrapper-text col-sm-6" 
+                         ng-class="{ 'no-padding-bottom add-padding-top' : ReservePkgForm.fname.$touched && ReservePkgForm.fname.$invalid }">
+                        <div class="box-text" ng-class="{ 'box-text-error' : ReservePkgForm.fname.$touched && ReservePkgForm.fname.$invalid }">
+                            <div class="text-content">First Name</div>
+                        </div><input type="text" 
+                                     name="fname" 
+                                     class="textbox" 
+                                     placeholder="First Name *" 
+                                     ng-model="ReservePkgFormData.fname"
+                                     ng-pattern="text"
+                                     ng-class="{ 'textbox-error' : ReservePkgForm.fname.$touched && ReservePkgForm.fname.$invalid }" 
+                                     required>
+                        <div ng-messages="ReservePkgForm.fname.$error" 
+                             ng-show="ReservePkgForm.fname.$touched && ReservePkgForm.fname.$invalid">
+                            <p class="text-error-msg no-padding" ng-message="required">Your First Name is required.</p>
+                            <p class="text-error-msg no-padding" ng-message="pattern">Your First Name must be in alphabet letters.</p>
+                        </div>
+                    </div>
+
+                        <div class="wrapper-text col-sm-6" 
+                         ng-class="{ 'no-padding-bottom add-padding-top' : ReservePkgForm.lname.$touched && ReservePkgForm.lname.$invalid }">
+                        <div class="box-text"
+                             ng-class="{ 'box-text-error' : ReservePkgForm.lname.$touched && ReservePkgForm.lname.$invalid }">
+                            <div class="text-content">Last Name</div>
+                        </div><input type="text" 
+                                     name="lname" 
+                                     placeholder="Last Name *" 
+                                     class="textbox" 
+                                     ng-model="ReservePkgFormData.lname"
+                                     ng-pattern="text"
+                                     ng-class="{ 'textbox-error' : ReservePkgForm.lname.$touched && ReservePkgForm.lname.$invalid }"
+                                     required>
+                        <div ng-messages="ReservePkgForm.lname.$error"
+                             ng-show="ReservePkgForm.lname.$touched && ReservePkgForm.lname.$invalid">
+                            <p class="text-error-msg no-padding" ng-message="required">Your Last Name is required.</p>
+                            <p class="text-error-msg no-padding" ng-message="pattern">Your Last Name must be in alphabet letters.</p>
+                        </div>
+                    </div>
+
+                        <div class="wrapper-text col-sm-6" 
+                         ng-class="{ 'no-padding-bottom add-padding-top' : ReservePkgForm.email.$touched && ReservePkgForm.email.$invalid }">
+                        <div class=box-text
+                             ng-class="{ 'box-text-error' : ReservePkgForm.email.$touched && ReservePkgForm.email.$invalid }">
+                            <div class="text-content">Email</div>
+                        </div><input type="email" 
+                                     name="email" 
+                                     placeholder="Email Address *" 
+                                     class="textbox" 
+                                     ng-model="ReservePkgFormData.email"
+                                     ng-class="{ 'textbox-error' : ReservePkgForm.email.$touched && ReservePkgForm.email.$invalid }"
+                                     required>
+                        <div ng-messages="ReservePkgForm.email.$error" 
+                             ng-show="ReservePkgForm.email.$touched && ReservePkgForm.email.$invalid">
+                            <p class="text-error-msg no-padding" ng-message="required">Your Email Address is required.</p>
+                            <p class="text-error-msg no-padding" ng-message="email">Please enter a valid Email Address.</p>
+                        </div>
+                    </div>
+
+                        <div class="wrapper-text col-sm-6"
+                         ng-class="{ 'no-padding-bottom add-padding-top' : ReservePkgForm.mobile.$touched && ReservePkgForm.mobile.$invalid }">
+                        <div class=box-text
+                             ng-class="{ 'box-text-error' : ReservePkgForm.mobile.$touched && ReservePkgForm.mobile.$invalid }">
+                            <div class="text-content">Mobile No.</div>
+                        </div><input type="text" 
+                                     name="mobile" 
+                                     placeholder="Mobile Number (09XXXXXXXXX)" 
+                                     class="textbox" 
+                                     ng-model="ReservePkgFormData.mobile" 
+                                     ng-pattern="regEx"
+                                     ng-class="{ 'textbox-error' : ReservePkgForm.mobile.$touched && ReservePkgForm.mobile.$invalid }">
+                        <div ng-messages="ReservePkgForm.mobile.$error" 
+                         ng-show="ReservePkgForm.mobile.$touched && ReservePkgForm.mobile.$invalid">
+                            <p class="text-error-msg no-padding" ng-message="pattern">Please enter a valid Mobile Number.</p>
+                        </div>
+                    </div>
+                    </div> <!-- END OF PERSONAL INFO -->
+                </div> <!-- END OF PARENT PERSONAL -->
+            <div class="travel-section">
+                <h5>Travel Details: <span class="text-required">*</span></h5>
+                <div class="travel-textbox">
+                    <div class="row">
+                        <div class="wrapper-text col-12">
+                            <div class=box-text>
+                                <div class="text-content">Destination</div>
+                            </div><span class="dropdown-style">
+                                <select name="desti" 
+                                        ng-model="ReservePkgFormData.desti" 
+                                        required>
+                                    <option ng-repeat="desti in destiChoices" 
+                                            value="{{ desti.value }}" 
+                                            ng-selected="selectedItemValue == desti.value" 
+                                            ng-disabled="selectedItemValue == desti.value">
+                                        {{ desti.name }}
+                                    </option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="tour_dates row">
+                        <div class="wrapper-text col-sm-6" 
+                             ng-class="{ 'no-padding-bottom add-padding-top' : ReservePkgForm.arrivalDate.$touched && ReservePkgForm.arrivalDate.$invalid }">
+                            <div class=box-text
+                                 ng-class="{ 'box-text-error' : ReservePkgForm.arrivalDate.$touched && ReservePkgForm.arrivalDate.$invalid }">
+                                <div class="text-content">Arrival Date</div>
+                            </div><span class="date-style"
+                                        ng-class="{ 'textbox-error' : ReservePkgForm.arrivalDate.$touched && ReservePkgForm.arrivalDate.$invalid }"><input type="date" 
+                                                                  name="arrivalDate" 
+                                                                  ng-model="ReservePkgFormData.arrivalDate" 
+                                                                  ui-validate="'arrivalCheck($value)'"
+                                                                  ng-class="{ 'date-invalid' : ReservePkgForm.arrivalDate.$touched && ReservePkgForm.arrivalDate.$invalid }"
+                                                                  required>
+                            </span>
+                            <div ng-messages="ReservePkgForm.arrivalDate.$error" 
+                                 ng-show="ReservePkgForm.arrivalDate.$touched && ReservePkgForm.arrivalDate.$invalid">
+                                <p class="text-error-msg no-padding" ng-message="required">Arrival Date is required.</p>
+                                <p class="text-error-msg no-padding" ng-show="arrivalErrMsg">Arrival Date must be greater than to current date.</p>
+                            </div>
+                        </div>
+
+                        <div class="wrapper-text col-sm-6"
+                             ng-class="{ 'no-padding-bottom add-padding-top' : ReservePkgForm.returnDate.$touched && ReservePkgForm.returnDate.$invalid }">
+                            <div class=box-text
+                                 ng-class="{ 'box-text-error' : ReservePkgForm.returnDate.$touched && ReservePkgForm.returnDate.$invalid }">
+                                <div class="text-content">Return Date</div>
+                            </div><span class="date-style"
+                                        ng-class="{ 'textbox-error' : ReservePkgForm.returnDate.$touched && ReservePkgForm.returnDate.$invalid }"><input type="date"
+                                        name="returnDate" 
+                                        ng-model="ReservePkgFormData.returnDate" 
+                                        ui-validate="'returnCheck($value)'"
+                                        ng-class="{ 'date-invalid' : ReservePkgForm.returnDate.$touched && ReservePkgForm.returnDate.$invalid }"
+                                        required></span>
+                            <div ng-messages="ReservePkgForm.returnDate.$error" 
+                             ng-show="ReservePkgForm.returnDate.$touched && ReservePkgForm.returnDate.$invalid">
+                                <p class="text-error-msg no-padding" ng-message="required">Return Date is required.</p>
+                                <p class="text-error-msg no-padding" ng-show="returnErrMsg">Return Date must be greater than or equal to Arrival Date.</p>
+                            </div>
+                        </div>
+                    </div> <!-- END OF tour_dates -->
+                </div> <!-- END OF TRAVEL TEXTBOX -->
+
+                <h5>Tour Details: <span class="text-required">*</span></h5>
+                    <div class="tours-radio">
+                                <ul class="row">
+                                    <li class="col-12 col-sm-4">
+                                        <label class="container_radio">Tour only
+                                            <input type="radio" 
+                                                   name="tours" 
+                                                   value="tourOnly" 
+                                                   ng-model="ReservePkgFormData.tours" 
+                                                   required>
+                                            <span class="radio_new"></span>
+                                        </label>
+                                    </li>
+                                    <li class="col-12 col-sm-4">
+                                        <label class="container_radio">Tour with accomodation
+                                            <input type="radio" 
+                                                   name="tours" 
+                                                   value="tourAccom" 
+                                                   ng-model="ReservePkgFormData.tours" 
+                                                   required>
+                                            <span class="radio_new"></span>
+                                        </label>
+                                    </li>
+                                    <li class="col-12 col-sm-4">
+                                        <label class="container_radio">Tour with transportation
+                                            <input type="radio" 
+                                                   name="tours" 
+                                                   value="tourTrans" 
+                                                   ng-model="ReservePkgFormData.tours" 
+                                                   required>
+                                            <span class="radio_new"></span>
+                                        </label>
+                                    </li>
+                                </ul>
+
+                                <ul class="row">
+                                    <li class="col-12 col-sm-6">
+                                        <label class="container_radio">Tour with accomodation &amp; transportation
+                                            <input type="radio" 
+                                                   name="tours" 
+                                                   value="tourAccomTrans" 
+                                                   ng-model="ReservePkgFormData.tours" 
+                                                   required>
+                                            <span class="radio_new"></span>
+                                        </label>
+                                    </li>
+                                    <li class="col-12 col-sm-6">
+                                        <label class="container_radio">Others:
+                                            <input type="radio" 
+                                                   name="tours" 
+                                                   value="tourOthers" 
+                                                   ng-model="ReservePkgFormData.tours" 
+                                                   required>
+                                            <span class="radio_new"></span>
+                                        </label><input type="text" 
+                                                       name="tourOthers" 
+                                                       class="textbox input-width-100" 
+                                                       placeholder="Others *" 
+                                                       ng-model="ReservePkgFormData.tourOthers" 
+                                                       ng-show="ReservePkgFormData.tours == 'tourOthers'"
+                                                       ng-class="{ 'textbox-error' : ReservePkgForm.tourOthers.$touched && ReservePkgForm.tourOthers.$invalid }"
+                                                       ng-required="ReservePkgFormData.tours == 'tourOthers'">
+                                        <div ng-messages="ReservePkgForm.tourOthers.$error"
+                                             ng-show="ReservePkgForm.tourOthers.$touched && ReservePkgForm.tourOthers.$invalid">
+                                    <p class="text-error-msg no-padding" ng-message="required">Other tour duration is required.</p>
+                                </div>
+                                    </li>
+                                </ul>
+                            </div> <!-- END OF TOURS RADIO -->
+
+
+                <div class="passenger_type row">
+                    <div class="wrapper-text col-sm-4 num_wrapper flexStart"
+                         ng-class="{ 'no-padding-bottom add-padding-top' : ReservePkgForm.noAdults.$touched && ReservePkgForm.noAdults.$invalid }">
+                        <div class="box-text"
+                             ng-class="{ 'box-text-error' : ReservePkgForm.noAdults.$touched && ReservePkgForm.noAdults.$invalid }">
+                            <div class="text-content">Number of Adults</div>
+                        </div><input type="number" 
+                                     name="noAdults" 
+                                     class="number_text" 
+                                     min="1" 
+                                     max="100" 
+                                     placeholder="0 *" 
+                                     ng-model="ReservePkgFormData.noAdults"
+                                     ng-class="{ 'textbox-error' : ReservePkgForm.noAdults.$touched && ReservePkgForm.noAdults.$invalid }"
+                                     required>
+                        <div ng-messages="ReservePkgForm.noAdults.$error" 
+                         ng-show="ReservePkgForm.noAdults.$touched && ReservePkgForm.noAdults.$invalid">
+                            <p class="text-error-msg no-padding" ng-message="required">Number of Adults is required.</p>
+                            <p class="text-error-msg no-padding" ng-message="min">Number of Adults must be 1 or more than 1.</p>
+                             <p class="text-error-msg no-padding" ng-message="number">Please input a number only.</p>
+                        </div>
+                    </div>
+                    
+
+                    <div class="wrapper-text col-sm-4"
+                         ng-class="{ 'no-padding-bottom add-padding-top' : ReservePkgForm.noChildren.$touched && ReservePkgForm.noChildren.$invalid }">
+                        <div class="num_wrapper">
+                            <div class="box-text"
+                                 ng-class="{ 'box-text-error' : ReservePkgForm.noChildren.$touched && ReservePkgForm.noChildren.$invalid }">
+                                <div class="text-content">Number of Children</div>
+                            </div><input type="number" 
+                                         name="noChildren" 
+                                         class="number_text" 
+                                         min="0" 
+                                         max="100" 
+                                         placeholder="0 *" 
+                                         ng-model="ReservePkgFormData.noChildren" 
+                                         ng-class="{ 'textbox-error' : ReservePkgForm.noChildren.$touched && ReservePkgForm.noChildren.$invalid }"
+                                         required>
+                        </div> <!-- END OF num_wrapper -->
+                        <div class="descrip_pass"><p>(3 - 7 years old)</p></div>
+                        
+                        <div ng-messages="ReservePkgForm.noChildren.$error" 
+                             ng-show="ReservePkgForm.noChildren.$touched && ReservePkgForm.noChildren.$invalid">
+                            <p class="text-error-msg no-padding" ng-message="required">Number of Children is required. If no children, please put 0.</p>
+                             <p class="text-error-msg no-padding" ng-message="number">Please input a number only.</p>
+                        </div>
+                    </div> <!-- END OF wrapper-text -->
+                    
+
+                    <div class="wrapper-text col-sm-4" 
+                         ng-class="{ 'no-padding-bottom add-padding-top' : ReservePkgForm.noInfant.$touched && ReservePkgForm.noInfant.$invalid }">
+                        <div class="num_wrapper">
+                            <div class="box-text"
+                                 ng-class="{ 'box-text-error' : ReservePkgForm.noInfant.$touched && ReservePkgForm.noInfant.$invalid }">
+                                <div class="text-content">Number of Infant</div>
+                            </div><input type="number" 
+                                         name="noInfant" 
+                                         class="number_text" 
+                                         min="0"
+                                         max="100" 
+                                         placeholder="0 *" 
+                                         ng-model="ReservePkgFormData.noInfant"
+                                         ng-class="{ 'textbox-error' : ReservePkgForm.noInfant.$touched && ReservePkgForm.noInfant.$invalid }"
+                                         required>
+                        </div> <!--END OF num_wrapper -->
+                        <div class="descrip_pass"><p>(3 years old below)</p></div>
+                        
+                        <div ng-messages="ReservePkgForm.noInfant.$error" 
+                         ng-show="ReservePkgForm.noInfant.$touched && ReservePkgForm.noInfant.$invalid">
+                            <p class="text-error-msg no-padding" ng-message="required">Number of Infant is required. If no infant, please put 0.</p>
+                             <p class="text-error-msg no-padding" ng-message="number">Please input a number only.</p>
+                        </div>
+                    </div> <!-- END OF wrapper-text -->
+                    
+                </div> <!-- END OF passenger_type -->
+            </div> <!-- END OF TRAVEL SECTION -->
+            <div class="row">
+                <div class="wrapper-text col-12">
+                    <div class=box-text-field>
+                        <div class="text-content-field">Package Inclusions Request</div>
+                    </div><textarea name="inclusionsReq" 
+                                    class="textfield" 
+                                    placeholder="Package Inclusions Request / Message" 
+                                    ng-model="ReservePkgFormData.inclusionsReq"></textarea>
+                </div> <!-- END OF TEXTAREA -->
+            </div>
+
+            <div class="submit-section">
+                <button ng-disabled="ReservePkgForm.$invalid" type="submit" class="button_border">Submit</button>
+            </div> <!-- END OF SUBMIT-SECTION -->
+            </form>
+            </div>
+        </div> <!-- END OF MODAL-CONTENT -->
+    </div> <!-- END OF MODAL-DIALOG -->
+</div><!-- END OF MODAL -->

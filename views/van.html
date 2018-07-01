@@ -1,0 +1,274 @@
+<div ng-controller="vanFormsController">
+    <form name="vanForm" ng-submit="submitVanForm(vanForm.$valid)" novalidate>
+        <div ng-show="success">
+            <div class="alert alert-success fade show">
+                <a ng-click="hideAlert()" class="close" >&times;</a>
+                <strong>Success!</strong> Your reservation has been sent. Confirmation will be sent to your email. Thank you!
+            </div>
+        </div>
+        <p class="text-legend text-required text-margin"> <b>*</b> Denotes Required Fields </p>    
+        <div class="pad">
+            <h5>Personal Information:</h5>
+            <div class="personal-info row">
+                <div class="wrapper-text col-sm-6">
+                <div class="box-text" ng-class="{ 'box-text-error' : vanForm.fname.$touched && vanForm.fname.$invalid }">
+                    <div class="text-content">First Name</div>
+                </div><input type="text" 
+                             name="fname" 
+                             class="textbox" 
+                             placeholder="First Name *" 
+                             ng-model="vanFormData.fname"
+                             ng-pattern="text"
+                             ng-class="{ 'textbox-error' : vanForm.fname.$touched && vanForm.fname.$invalid }" 
+                             required>
+                <div ng-messages="vanForm.fname.$error" 
+                     ng-show="vanForm.fname.$touched && vanForm.fname.$invalid">
+                    <p class="text-error-msg no-padding" ng-message="required">Your First Name is required.</p>
+                    <p class="text-error-msg no-padding" ng-message="pattern">Your First Name must be in alphabet letters.</p>
+                </div>
+            </div>
+                <div class="wrapper-text col-sm-6">
+                    <div class="box-text"
+                         ng-class="{ 'box-text-error' : vanForm.lname.$touched && vanForm.lname.$invalid }">
+                        <div class="text-content">Last Name</div>
+                    </div><input type="text" 
+                                 name="lname" 
+                                 placeholder="Last Name *" 
+                                 class="textbox" 
+                                 ng-model="vanFormData.lname"
+                                 ng-pattern="text"
+                                 ng-class="{ 'textbox-error' : vanForm.lname.$touched && vanForm.lname.$invalid }"
+                                 required>
+                    <div ng-messages="vanForm.lname.$error"
+                     ng-show="vanForm.lname.$touched && vanForm.lname.$invalid">
+                        <p class="text-error-msg no-padding" ng-message="required">Your Last Name is required.</p>
+                        <p class="text-error-msg no-padding" ng-message="pattern">Your Last Name must be in alphabet letters.</p>
+                    </div>
+            </div>
+
+                <div class="wrapper-text col-sm-6">
+                <div class=box-text
+                     ng-class="{ 'box-text-error' : vanForm.email.$touched && vanForm.email.$invalid }">
+                    <div class="text-content">Email</div>
+                </div><input type="email" 
+                             name="email" 
+                             placeholder="Email Address *" 
+                             class="textbox" 
+                             ng-model="vanFormData.email"
+                             ng-class="{ 'textbox-error' : vanForm.email.$touched && vanForm.email.$invalid }"
+                             required>
+                <div ng-messages="vanForm.email.$error" 
+                     ng-show="vanForm.email.$touched && vanForm.email.$invalid">
+                    <p class="text-error-msg no-padding" ng-message="required">Your Email Address is required.</p>
+                    <p class="text-error-msg no-padding" ng-message="email">Please enter a valid Email Address.</p>
+                </div>
+            </div>
+
+                <div class="wrapper-text col-sm-6">
+                <div class=box-text
+                     ng-class="{ 'box-text-error' : vanForm.mobile.$touched && vanForm.mobile.$invalid }">
+                    <div class="text-content">Mobile No.</div>
+                </div><input type="text" 
+                             name="mobile" 
+                             placeholder="Mobile Number (09XXXXXXXXX)" 
+                             class="textbox" 
+                             ng-model="vanFormData.mobile" 
+                             ng-pattern="regEx"
+                             ng-class="{ 'textbox-error' : vanForm.mobile.$touched && vanForm.mobile.$invalid }">
+                <div ng-messages="vanForm.mobile.$error" 
+                 ng-show="vanForm.mobile.$touched && vanForm.mobile.$invalid">
+                    <p class="text-error-msg no-padding" ng-message="pattern">Please enter a valid Mobile Number.</p>
+                </div>
+            </div>
+            </div> <!-- END OF PERSONAL INFO -->
+        </div> <!-- END OF PARENT PERSONAL -->
+
+
+        <div class="travel-section">
+            <h5>Travel Details: <span class="text-required">*</span></h5>
+            <div class="van-radio">
+                <ul class="row">
+                    <li class="col-6" ng-repeat="van in vanChoices">
+                        <label class="container_radio">{{ van.name }}
+                            <input type="radio" 
+                                   name="vanTransRadio" 
+                                   value="{{ van.value }}" 
+                                   ng-model="vanFormData.vanTransRadio" 
+                                   required>
+                            <span class="radio_new"></span>
+                        </label>
+                    </li>
+                </ul>
+            </div> <!-- END OF VAN RADIO -->
+
+            <div class="travel-textbox row">
+                <div class="wrapper-text col-sm-6 inlineBlock"
+                      ng-class="{ 'no-padding-bottom add-padding-top' : vanForm.orign.$touched && vanForm.orign.$invalid }">
+                    <div class="box-text"
+                         ng-class="{ 'box-text-error' : vanForm.orign.$touched && vanForm.orign.$invalid }">
+                        <div class="text-content">Origin</div>
+                    </div><input type="text" 
+                                 name="orign" 
+                                 placeholder="Origin *" 
+                                 class="textbox" 
+                                 ng-model="vanFormData.orign" 
+                                 ng-class="{ 'textbox-error' : vanForm.orign.$touched && vanForm.orign.$invalid }"
+                                 required>
+                    <div ng-messages="vanForm.orign.$error" 
+                         ng-show="vanForm.orign.$touched && vanForm.orign.$invalid">
+                        <p class="text-error-msg no-padding" ng-message="required">Origin is required.</p>
+                    </div>
+                </div>
+
+
+                <div class="wrapper-text col-sm-6">
+                    <div class="box-text">
+                        <div class="text-content">Destination</div>
+                    </div><span class="dropdown-style">
+                            <select name="desti" ng-model="vanFormData.desti" required>
+                                <option ng-repeat="desti in destiChoices" value="{{ desti.value }}" ng-selected="selectedItemValue == desti.value" ng-disabled="selectedItemValue == desti.value">{{ desti.name }}</option>
+                            </select>
+                        </span>
+                </div>
+
+
+            </div> <!-- END OF TRAVEL TEXTBOX -->
+            <div class="tour_dates-van row">
+                <div class="wrapper-text col-sm-6"
+                     ng-class="{ 'no-padding-bottom add-padding-top' : vanForm.departureDate.$touched && vanForm.departureDate.$invalid }">
+                    <div class="box-text"
+                         ng-class="{ 'box-text-error' : vanForm.departureDate.$touched && vanForm.departureDate.$invalid }">
+                        <div class="text-content">Departure Date</div>
+                    </div><span class="date-style"
+                                ng-class="{ 'textbox-error' : vanForm.departureDate.$touched 
+                        && vanForm.departureDate.$invalid }"><input type="date" 
+                                                                    name="departureDate" 
+                                                                    ng-model="vanFormData.departureDate" 
+                                                                    ui-validate="'departureCheck($value)'"
+                                                                    ng-class="{ 'date-invalid' : vanForm.departureDate.$touched 
+                        && vanForm.departureDate.$invalid }"
+                                                                    required></span>
+                    <div ng-messages="vanForm.departureDate.$error" ng-show="vanForm.departureDate.$touched && vanForm.departureDate.$invalid">
+                        <p class="text-error-msg no-padding" ng-message="required">Departure Date is required.</p>
+                        <p class="text-error-msg no-padding" ng-show="departureErrMsg">Departure Date must be greater than to current date.</p>
+                    </div>
+                </div>
+
+
+                <div class="wrapper-text col-sm-6" 
+                     ng-hide="vanFormData.vanTransRadio === 'oneWay'"
+                     ng-class="{ 'no-padding-bottom add-padding-top' : vanForm.returnDate.$touched && vanForm.returnDate.$invalid }">
+                    <div class="box-text"
+                         ng-class="{ 'box-text-error' : vanForm.returnDate.$touched && vanForm.returnDate.$invalid }">
+                        <div class="text-content">Return Date</div>
+                    </div><span class="date-style"
+                                ng-class="{ 'textbox-error' : vanForm.returnDate.$touched 
+                        && vanForm.returnDate.$invalid }"><input type="date" 
+                                                                 name="returnDate" 
+                                                                 ng-model="vanFormData.returnDate" 
+                                                                 ui-validate="'returnCheck($value)'" 
+                                                                 ng-class="{ 'date-invalid' : vanForm.returnDate.$touched && vanForm.returnDate.$invalid }"
+                                                                 required></span>
+                    <div ng-messages="vanForm.returnDate.$error" ng-show="vanForm.returnDate.$touched && vanForm.returnDate.$invalid">
+                        <p class="text-error-msg no-padding" ng-message="required">Return Date is required.</p>
+                        <p class="text-error-msg no-padding" ng-show="returnErrMsg">Return Date must be greater than or equal to Departure Date.</p>
+                    </div>
+                </div>
+
+                </div> <!-- END OF tour_dates -->
+
+            <div class="passenger_type row">
+                <div class="wrapper-text col-sm-4 num_wrapper flexStart"
+                     ng-class="{ 'no-padding-bottom add-padding-top' : vanForm.noAdults.$touched && vanForm.noAdults.$invalid }">
+                    <div class="box-text"
+                         ng-class="{ 'box-text-error' : vanForm.noAdults.$touched && vanForm.noAdults.$invalid }">
+                        <div class="text-content">Number of Adults</div>
+                    </div><input type="number" 
+                                 name="noAdults" 
+                                 class="number_text" 
+                                 min="1" 
+                                 max="100" 
+                                 placeholder="0 *" 
+                                 ng-model="vanFormData.noAdults"
+                                 ng-class="{ 'textbox-error' : vanForm.noAdults.$touched && vanForm.noAdults.$invalid }"
+                                 required>
+                    <div ng-messages="vanForm.noAdults.$error" 
+                     ng-show="vanForm.noAdults.$touched && vanForm.noAdults.$invalid">
+                        <p class="text-error-msg no-padding" ng-message="required">Number of Adults is required.</p>
+                        <p class="text-error-msg no-padding" ng-message="min">Number of Adults must be 1 or more than 1.</p>
+                         <p class="text-error-msg no-padding" ng-message="number">Please input a number only.</p>
+                    </div>
+                </div>
+
+
+                <div class="wrapper-text col-sm-4"
+                     ng-class="{ 'no-padding-bottom add-padding-top' : vanForm.noChildren.$touched && vanForm.noChildren.$invalid }">
+                    <div class="num_wrapper">
+                        <div class="box-text"
+                             ng-class="{ 'box-text-error' : vanForm.noChildren.$touched && vanForm.noChildren.$invalid }">
+                            <div class="text-content">Number of Children</div>
+                        </div><input type="number" 
+                                     name="noChildren" 
+                                     class="number_text" 
+                                     min="0" 
+                                     max="100" 
+                                     placeholder="0 *" 
+                                     ng-model="vanFormData.noChildren" 
+                                     ng-class="{ 'textbox-error' : vanForm.noChildren.$touched && vanForm.noChildren.$invalid }"
+                                     required>
+                    </div> <!-- END OF num_wrapper -->
+                    <div class="descrip_pass"><p>(3 - 7 years old)</p></div>
+
+                    <div ng-messages="vanForm.noChildren.$error" 
+                         ng-show="vanForm.noChildren.$touched && vanForm.noChildren.$invalid">
+                        <p class="text-error-msg no-padding" ng-message="required">Number of Children is required. If no children, please put 0.</p>
+                         <p class="text-error-msg no-padding" ng-message="number">Please input a number only.</p>
+                    </div>
+                </div> <!-- END OF wrapper-text -->
+
+
+                <div class="wrapper-text col-sm-4" 
+                     ng-class="{ 'no-padding-bottom add-padding-top' : vanForm.noInfant.$touched && vanForm.noInfant.$invalid }">
+                    <div class="num_wrapper">
+                        <div class="box-text"
+                             ng-class="{ 'box-text-error' : vanForm.noInfant.$touched && vanForm.noInfant.$invalid }">
+                            <div class="text-content">Number of Infant</div>
+                        </div><input type="number" 
+                                     name="noInfant" 
+                                     class="number_text" 
+                                     min="0"
+                                     max="100" 
+                                     placeholder="0 *" 
+                                     ng-model="vanFormData.noInfant"
+                                     ng-class="{ 'textbox-error' : vanForm.noInfant.$touched && vanForm.noInfant.$invalid }"
+                                     required>
+                    </div> <!--END OF num_wrapper -->
+                    <div class="descrip_pass"><p>(3 years old below)</p></div>
+
+                    <div ng-messages="vanForm.noInfant.$error" 
+                     ng-show="vanForm.noInfant.$touched && vanForm.noInfant.$invalid">
+                        <p class="text-error-msg no-padding" ng-message="required">Number of Infant is required. If no infant, please put 0.</p>
+                         <p class="text-error-msg no-padding" ng-message="number">Please input a number only.</p>
+                    </div>
+                </div> <!-- END OF wrapper-text -->
+
+            </div> <!-- END OF passenger_type -->
+        </div> <!-- END OF TRAVEL SECTION -->
+
+        <div class="textareafield row">
+            <div class="wrapper-text col-12">
+                <div class=box-text-field>
+                    <div class="text-content-field">Special Request</div>
+                </div><textarea name="specialReq" 
+                                class="textfield" 
+                                placeholder="Special Request" 
+                                ng-model="vanFormData.specialReq"></textarea>
+            </div> <!-- END OF TEXTAREA -->
+        </div> <!-- END OF textareafield -->
+
+
+          <div class="submit-section">
+            <button ng-disabled="vanForm.$invalid" type="submit" class="button_border">Submit</button>
+          </div> <!-- END OF SUBMIT-SECTION -->
+    </form>
+</div>

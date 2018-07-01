@@ -1,0 +1,44 @@
+<div class="header-headers">
+        <h1>Package</h1>
+    </div>
+<main>
+    <div class="package_page">
+        <div class="package-desti" ng-repeat="destipkg in packages.desti">
+            <div class="desti_pic">
+                <div class="wrapper-desti_pic">
+                    <img ng-src="{{ destipkg.urlPhoto }}" alt="{{ destipkg.alt }}"/>
+                    <div class="overlay-name-section-desti_pic">
+                        <p class="desti-name-desti_pic">{{ destipkg.name }}</p>
+                    </div>
+                </div> <!-- END OF wrapper-desti_pic -->
+            </div> <!-- END OF desti_pic -->
+            <div class="grid-package">
+                <div ng-include="'includes/pkg-details.html'"></div>
+
+                <div class="buttons-package-pg">
+                    <div class="buttons-container-pkg-pg">
+                        <div class="viewbutton-section-itinerary2">
+                        <button type="button" class="button_border" data-toggle="modal" data-target="#itinerary_cebu" ng-click="setData(destipkg)">Itinerary 
+                    </button>
+                        </div>
+                        <div class="viewbutton-section-request2">
+                            <button type="button" class="button_border2" data-toggle="modal" data-target="#request_package" ng-click="setData(destipkg)">Request Package</button>
+                        </div>
+                    </div> <!-- END OF buttons-container-pkg-pg -->
+                </div><!-- END OF buttons-package-pg -->   
+            </div> <!-- END OF GRID PACKAGE -->
+
+
+            <div ng-include="'includes/itinerary.html'"></div>
+            <div ng-include="'includes/request-package.html'"></div>
+            <div ng-include="'includes/reserve-package.html'"></div>
+
+        </div> <!-- END OF PACKAGE DESTI -->           
+        <div class="buttons-pkg-pg-reserve">
+            <div class="viewbutton-section-reserve">
+                <button type="button" class="button_fill" data-toggle="modal" data-target="#reserve_package">Reserve
+                </button>
+            </div> <!-- END OF viewbutton-section-reserve -->
+        </div>
+    </div> <!-- END OF PACKAGE PAGE -->
+</main>

@@ -1,0 +1,26 @@
+<div class="container-desti-package">
+    <h3>{{ destipkg.daysPkg }}</h3>
+    <h6>{{ destipkg.daysPkgDesc }}</h6>
+    <div class="desti-pkg_body">
+        <p>{{ destipkg.pkgDesc }}</p>
+        <h5>Package Inclusions:</h5>
+        <ul class="dash">
+            <li ng-repeat="inclusion in destipkg.pkgInclusions"> {{ inclusion.list }} </li>
+        </ul>
+        <h5>Sites To Visit:</h5>
+        <ul class="dash">
+            <li ng-repeat="site in destipkg.pkgSite"> {{ site.list }} </li>
+        </ul>
+        <h5>Activities:</h5>
+        <ul class="dash">
+            <li ng-repeat="activities in destipkg.pkgActivities"> {{ activities.list }} </li>
+        </ul>
+        <h5>Optional:</h5>
+        <ul class="dash">
+            <li ng-repeat="optional in destipkg.pkgOptional"> {{ optional.list }}</li>
+        </ul>
+    </div> <!-- END OF desti-pkg_body -->
+</div> <!-- END OF container-desti-package -->
+<div class="price">
+    <sup>PHP</sup>{{ destipkg.price }}<sub>/person</sub>
+</div> <!-- END OF price-package -->

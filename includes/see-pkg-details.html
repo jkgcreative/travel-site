@@ -1,0 +1,25 @@
+ <div class="see-package-content">
+    <h3>{{ destipkg.daysPkg }}</h3>
+    <h6>{{ destipkg.daysPkgDesc }}</h6>
+    <div class="see-package-content-body">
+        <h5>Package Inclusions:</h5>
+        <ul class="dash">
+            <li ng-repeat="inclusion in destipkg.pkgInclusions"> {{ inclusion.list }} </li>
+        </ul>
+        <h5>Sites To Visit:</h5>
+        <ul class="dash">
+            <li ng-repeat="site in destipkg.pkgSite"> {{ site.list }} </li>
+        </ul>
+        <h5>Activities:</h5>
+        <ul class="dash">
+            <li ng-repeat="activities in destipkg.pkgActivities"> {{ activities.list }} </li>
+        </ul>
+        <h5>Optional:</h5>
+        <ul class="dash">
+            <li ng-repeat="optional in destipkg.pkgOptional"> {{ optional.list }}</li>
+        </ul>
+    </div> <!-- END of see-package-content-body --> 
+</div>  <!-- END of see-package-content --> 
+<div class="price">
+    <sup>PHP</sup>{{ destipkg.price }}<sub>/person</sub>
+</div> <!-- END of price -->

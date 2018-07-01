@@ -1,0 +1,303 @@
+<div ng-controller="flightFormsController">
+    <form name="flightForm" ng-submit="submitFlightForm(flightForm.$valid)" novalidate>
+        <div ng-show="success">
+            <div class="alert alert-success fade show">
+                <a ng-click="hideAlert()" class="close" >&times;</a>
+                <strong>Success!</strong> Your reservation has been sent. Confirmation will be sent to your email. Thank you!
+            </div>
+        </div>
+        <p class="text-legend text-required text-margin"> <b>*</b> Denotes Required Fields </p> 
+        <div class="pad">
+            <h5>Personal Information:</h5>
+                <div class="personal-info row">
+                <div class="wrapper-text col-sm-6">
+                <div class="box-text" 
+                     ng-class="{ 'box-text-error' : flightForm.fname.$touched && flightForm.fname.$invalid }">
+                    <div class="text-content">First Name</div>
+                </div><input type="text" 
+                             name="fname" 
+                             class="textbox" 
+                             placeholder="First Name *" 
+                             ng-model="flightFormData.fname"
+                             ng-pattern="text"
+                             ng-class="{ 'textbox-error' : flightForm.fname.$touched && flightForm.fname.$invalid }" 
+                             required>
+                <div ng-messages="flightForm.fname.$error" 
+                     ng-show="flightForm.fname.$touched && flightForm.fname.$invalid">
+                    <p class="text-error-msg no-padding" ng-message="required">Your First Name is required.</p>
+                    <p class="text-error-msg no-padding" ng-message="pattern">Your First Name must be in alphabet letters.</p>
+                </div>
+            </div>
+                <div class="wrapper-text col-sm-6">
+                    <div class="box-text"
+                         ng-class="{ 'box-text-error' : flightForm.lname.$touched && flightForm.lname.$invalid }">
+                        <div class="text-content">Last Name</div>
+                    </div><input type="text" 
+                                 name="lname" 
+                                 placeholder="Last Name *" 
+                                 class="textbox" 
+                                 ng-model="flightFormData.lname"
+                                 ng-pattern="text"
+                                 ng-class="{ 'textbox-error' : flightForm.lname.$touched && flightForm.lname.$invalid }"
+                                 required>
+                    <div ng-messages="flightForm.lname.$error"
+                     ng-show="flightForm.lname.$touched && flightForm.lname.$invalid">
+                        <p class="text-error-msg no-padding" ng-message="required">Your Last Name is required.</p>
+                        <p class="text-error-msg no-padding" ng-message="pattern">Your Last Name must be in alphabet letters.</p>
+                    </div>
+            </div>
+
+                <div class="wrapper-text col-sm-6">
+                <div class=box-text
+                     ng-class="{ 'box-text-error' : flightForm.email.$touched && flightForm.email.$invalid }">
+                    <div class="text-content">Email</div>
+                </div><input type="email" 
+                             name="email" 
+                             placeholder="Email Address *" 
+                             class="textbox" 
+                             ng-model="flightFormData.email"
+                             ng-class="{ 'textbox-error' : flightForm.email.$touched && flightForm.email.$invalid }"
+                             required>
+                <div ng-messages="flightForm.email.$error" 
+                     ng-show="flightForm.email.$touched && flightForm.email.$invalid">
+                    <p class="text-error-msg no-padding" ng-message="required">Your Email Address is required.</p>
+                    <p class="text-error-msg no-padding" ng-message="email">Please enter a valid Email Address.</p>
+                </div>
+            </div>
+
+                <div class="wrapper-text col-sm-6">
+                <div class=box-text
+                     ng-class="{ 'box-text-error' : flightForm.mobile.$touched && flightForm.mobile.$invalid }">
+                    <div class="text-content">Mobile No.</div>
+                </div><input type="text" 
+                             name="mobile" 
+                             placeholder="Mobile Number (09XXXXXXXXX)" 
+                             class="textbox" 
+                             ng-model="flightFormData.mobile" 
+                             ng-pattern="regEx"
+                             ng-class="{ 'textbox-error' : flightForm.mobile.$touched && flightForm.mobile.$invalid }">
+                <div ng-messages="flightForm.mobile.$error" 
+                 ng-show="flightForm.mobile.$touched && flightForm.mobile.$invalid">
+                    <p class="text-error-msg no-padding" ng-message="pattern">Please enter a valid Mobile Number.</p>
+                </div>
+            </div>
+            </div> <!-- END OF PERSONAL INFO -->
+        </div> <!-- END OF PARENT PERSONAL -->
+
+        <div class="travel-section">
+            <h5>Travel Details: <span class="text-required">*</span></h5>
+            <div class="van-radio">
+                <ul class="row">
+                    <li class="col-6" 
+                        ng-repeat="flight in flightChoices">
+                        <label class="container_radio">{{ flight.name }}
+                            <input type="radio" 
+                                   name="flightTransRadio" 
+                                   value="{{ flight.value }}" 
+                                   ng-model="flightFormData.flightTransRadio" 
+                                   required>
+                            <span class="radio_new"></span>
+                        </label>
+                    </li>
+                </ul>
+            </div> <!-- END OF VAN RADIO -->
+
+            <div class="travel-textbox row">
+                <div class="wrapper-text col-sm-6 inlineBlock"
+                      ng-class="{ 'no-padding-bottom add-padding-top' : flightForm.orign.$touched && flightForm.orign.$invalid }">
+                    <div class="box-text"
+                         ng-class="{ 'box-text-error' : flightForm.orign.$touched && flightForm.orign.$invalid }">
+                        <div class="text-content">Origin</div>
+                    </div><input type="text" 
+                                 name="orign" 
+                                 placeholder="Origin *" 
+                                 class="textbox" 
+                                 ng-model="flightFormData.orign" 
+                                 ng-class="{ 'textbox-error' : flightForm.orign.$touched && flightForm.orign.$invalid }"
+                                 required>
+                    <div ng-messages="flightForm.orign.$error" 
+                         ng-show="flightForm.orign.$touched && flightForm.orign.$invalid">
+                        <p class="text-error-msg no-padding" ng-message="required">Origin is required.</p>
+                    </div>
+                </div>
+
+                <div class="wrapper-text col-sm-6">
+                    <div class=box-text>
+                        <div class="text-content">Destination</div>
+                    </div><span class="dropdown-style">
+                            <select name="desti" 
+                                    ng-model="flightFormData.desti" 
+                                    required>
+                                <option ng-repeat="desti in destiChoices" 
+                                        value="{{ desti.value }}" 
+                                        ng-selected="selectedItemValue == desti.value" 
+                                        ng-disabled="selectedItemValue == desti.value">
+                                    {{ desti.name }}
+                                </option>
+                            </select>
+                        </span>
+                </div>
+            </div> <!-- END OF TRAVEL TEXTBOX -->
+
+
+                <div class="tour_dates-van row">
+                <div class="wrapper-text col-sm-6"
+                     ng-class="{ 'no-padding-bottom add-padding-top' : flightForm.departureDate.$touched && flightForm.departureDate.$invalid }">
+                    <div class="box-text"
+                         ng-class="{ 'box-text-error' : flightForm.departureDate.$touched && flightForm.departureDate.$invalid }">
+                        <div class="text-content">Departure Date</div>
+                    </div><span class="date-style"
+                                ng-class="{ 'textbox-error' : flightForm.departureDate.$touched 
+                        && flightForm.departureDate.$invalid }"><input type="date" 
+                                                                    name="departureDate" 
+                                                                    ng-model="flightFormData.departureDate" 
+                                                                    ui-validate="'departureCheck($value)'"
+                                                                    ng-class="{ 'date-invalid' : flightForm.departureDate.$touched 
+                        && flightForm.departureDate.$invalid }"
+                                                                    required></span>
+                    <div ng-messages="flightForm.departureDate.$error" ng-show="flightForm.departureDate.$touched && flightForm.departureDate.$invalid">
+                        <p class="text-error-msg no-padding" ng-message="required">Departure Date is required.</p>
+                        <p class="text-error-msg no-padding" ng-show="departureErrMsg">Departure Date must be greater than to current date.</p>
+                    </div>
+                </div>
+
+
+                <div class="wrapper-text col-sm-6" 
+                     ng-hide="flightFormData.flightTransRadio === 'oneWay'"
+                     ng-class="{ 'no-padding-bottom add-padding-top' : flightForm.returnDate.$touched && flightForm.returnDate.$invalid }">
+                    <div class="box-text"
+                         ng-class="{ 'box-text-error' : flightForm.returnDate.$touched && flightForm.returnDate.$invalid }">
+                        <div class="text-content">Return Date</div>
+                    </div><span class="date-style"
+                                ng-class="{ 'textbox-error' : flightForm.returnDate.$touched 
+                        && flightForm.returnDate.$invalid }"><input type="date" 
+                                                                 name="returnDate" 
+                                                                 ng-model="flightFormData.returnDate" 
+                                                                 ui-validate="'returnCheck($value)'" 
+                                                                 ng-class="{ 'date-invalid' : flightForm.returnDate.$touched && flightForm.returnDate.$invalid }"
+                                                                 required></span>
+                    <div ng-messages="flightForm.returnDate.$error" ng-show="flightForm.returnDate.$touched && flightForm.returnDate.$invalid">
+                        <p class="text-error-msg no-padding" ng-message="required">Return Date is required.</p>
+                        <p class="text-error-msg no-padding" ng-show="returnErrMsg">Return Date must be greater than or equal to Departure Date.</p>
+                    </div>
+                </div>
+
+                </div> <!-- END OF tour_dates -->
+
+            <div class="seat_pass">
+                <div class="seat_wrapper row">
+                        <div class="wrapper-text seat-class col-sm-12">
+                        <div class=box-text>
+                            <div class="text-content">Seat Class</div>
+                        </div><span class="dropdown-style">
+                            <select name="seatClass" 
+                                    ng-model="flightFormData.seatClass" 
+                                    required>
+                                <option ng-repeat="seat in seatClasses" 
+                                        value="{{ seat.value }}" 
+                                        ng-selected="selectedItemValue == seat.value" 
+                                        ng-disabled="selectedItemValue == seat.value">
+                                    {{ seat.name }}
+                                </option>
+                            </select>
+                        </span>
+                    </div>
+                </div> <!-- END OF seat_wrapper -->
+
+
+            <div class="passenger_type row">
+                <div class="wrapper-text col-sm-4 num_wrapper flexStart"
+                     ng-class="{ 'no-padding-bottom add-padding-top' : flightForm.noAdults.$touched && flightForm.noAdults.$invalid }">
+                    <div class="box-text"
+                         ng-class="{ 'box-text-error' : flightForm.noAdults.$touched && flightForm.noAdults.$invalid }">
+                        <div class="text-content">Number of Adults</div>
+                    </div><input type="number" 
+                                 name="noAdults" 
+                                 class="number_text" 
+                                 min="1" 
+                                 max="100" 
+                                 placeholder="0 *" 
+                                 ng-model="flightFormData.noAdults"
+                                 ng-class="{ 'textbox-error' : flightForm.noAdults.$touched && flightForm.noAdults.$invalid }"
+                                 required>
+                    <div ng-messages="flightForm.noAdults.$error" 
+                     ng-show="flightForm.noAdults.$touched && flightForm.noAdults.$invalid">
+                        <p class="text-error-msg no-padding" ng-message="required">Number of Adults is required.</p>
+                        <p class="text-error-msg no-padding" ng-message="min">Number of Adults must be 1 or more than 1.</p>
+                         <p class="text-error-msg no-padding" ng-message="number">Please input a number only.</p>
+                    </div>
+                </div>
+
+
+                <div class="wrapper-text col-sm-4"
+                     ng-class="{ 'no-padding-bottom add-padding-top' : flightForm.noChildren.$touched && flightForm.noChildren.$invalid }">
+                    <div class="num_wrapper">
+                        <div class="box-text"
+                             ng-class="{ 'box-text-error' : flightForm.noChildren.$touched && flightForm.noChildren.$invalid }">
+                            <div class="text-content">Number of Children</div>
+                        </div><input type="number" 
+                                     name="noChildren" 
+                                     class="number_text" 
+                                     min="0" 
+                                     max="100" 
+                                     placeholder="0 *" 
+                                     ng-model="flightFormData.noChildren" 
+                                     ng-class="{ 'textbox-error' : flightForm.noChildren.$touched && flightForm.noChildren.$invalid }"
+                                     required>
+                    </div> <!-- END OF num_wrapper -->
+                    <div class="descrip_pass"><p>(3 - 7 years old)</p></div>
+
+                    <div ng-messages="flightForm.noChildren.$error" 
+                         ng-show="flightForm.noChildren.$touched && flightForm.noChildren.$invalid">
+                        <p class="text-error-msg no-padding" ng-message="required">Number of Children is required. If no children, please put 0.</p>
+                         <p class="text-error-msg no-padding" ng-message="number">Please input a number only.</p>
+                    </div>
+                </div> <!-- END OF wrapper-text -->
+
+
+                <div class="wrapper-text col-sm-4" 
+                     ng-class="{ 'no-padding-bottom add-padding-top' : flightForm.noInfant.$touched && flightForm.noInfant.$invalid }">
+                    <div class="num_wrapper">
+                        <div class="box-text"
+                             ng-class="{ 'box-text-error' : flightForm.noInfant.$touched && flightForm.noInfant.$invalid }">
+                            <div class="text-content">Number of Infant</div>
+                        </div><input type="number" 
+                                     name="noInfant" 
+                                     class="number_text" 
+                                     min="0"
+                                     max="100" 
+                                     placeholder="0 *" 
+                                     ng-model="flightFormData.noInfant"
+                                     ng-class="{ 'textbox-error' : flightForm.noInfant.$touched && flightForm.noInfant.$invalid }"
+                                     required>
+                    </div> <!--END OF num_wrapper -->
+                    <div class="descrip_pass"><p>(3 years old below)</p></div>
+
+                    <div ng-messages="flightForm.noInfant.$error" 
+                     ng-show="flightForm.noInfant.$touched && flightForm.noInfant.$invalid">
+                        <p class="text-error-msg no-padding" ng-message="required">Number of Infant is required. If no infant, please put 0.</p>
+                         <p class="text-error-msg no-padding" ng-message="number">Please input a number only.</p>
+                    </div>
+                </div> <!-- END OF wrapper-text -->
+
+            </div> <!-- END OF passenger_type -->
+            </div>   <!-- END OF seat_pass -->   
+
+        </div> <!-- END OF TRAVEL SECTION -->  
+
+        <div class="textareafield row">
+            <div class="wrapper-text col-12">
+                <div class=box-text-field>
+                    <div class="text-content-field">Special Request</div>
+            </div><textarea name="specialReq" 
+                            class="textfield" 
+                            placeholder="Special Request" 
+                            ng-model="flightFormData.specialReq"></textarea>
+            </div> <!-- END OF TEXTAREA --> 
+        </div> <!-- END OF textareafield -->
+
+        <div class="submit-section">
+            <button ng-disabled="flightForm.$invalid" type="submit" class="button_border">Submit</button>
+        </div> <!-- END OF SUBMIT-SECTION -->
+    </form>
+</div>

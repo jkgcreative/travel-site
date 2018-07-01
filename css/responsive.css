@@ -1,0 +1,866 @@
+@media screen and (min-width: 200px) {
+    .modal-dialog {
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+} /* END OF min-width: 200px */
+
+
+
+@media screen and (min-width: 300px) {
+    .van-radio ul li  {
+        padding: 0% 5%;
+        width: 80%;
+    }
+} /* END OF min-width: 300px */
+
+
+
+@media screen and (max-width: 399px) {
+    .nav-link {
+        padding: 2px;
+    }
+    .nav {
+        font-size: 70%;
+        line-height: 10px;
+        font-weight: bold;
+    }  
+} /* END OF max-width: 399px */
+
+
+
+@media screen and (min-width: 400px) {
+    .box-text {
+        width: 90px;
+    }
+    
+    .textbox, 
+    .price-range-container, 
+    .rating-grid, 
+    .dropdown-style, 
+    .date-style,
+    .number_text,
+    .textfield {
+        width: 55%;
+    }
+    
+    .tour_dates-van .wrapper-text, 
+    .tour_dates-col .wrapper-text,
+    .passenger_type .num_wrapper,
+    .no-guest-room .num_wrapper,
+    .travel-textbox .wrapper-text,
+    .textareafield .wrapper-text,
+    .seat_wrapper .wrapper-text,
+    .price_star .wrapper-text,
+    .modal-content .wrapper-text {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .inlineBlock {
+        display: inline-block !important;
+    }
+    
+    .price_star .wrapper-text .box-text {
+        height: 65px;
+    }
+    
+    .price_star .wrapper-text .text-content {
+        display: grid;
+        align-content: center;
+        justify-content: center;
+        height: 65px;
+    }
+    
+    .price_star .price_range .wrapper-text .text-content {
+        line-height: 0px;
+    }
+    
+    .no-guest-room .wrapper-text .box-text {
+        height: 45px;
+    }
+    
+    .no-guest-room .wrapper-text .text-content, 
+    .tour_dates-van .wrapper-text .text-content, 
+    .passenger_type .wrapper-text .text-content, 
+    .tour_dates-col .wrapper-text .text-content,
+    .text-content-field {
+        display: grid;
+        align-content: center;
+        justify-content: center;
+        line-height: 15px;
+        height: 45px;
+    }
+    
+    .descrip_pass p { 
+        width: 80%;
+        margin-left: auto;
+    }
+    
+    #reserve_package .passenger_type .wrapper-text {
+        display: block;
+    }
+    
+    #reserve_package .passenger_type .num_wrapper {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+    }
+    
+    .box-text-field {
+        width: 90px;
+        height: 200px;
+    }
+  
+    .text-content-field {
+        height: 200px;
+    }
+    
+    .van-radio {
+        width: 70%;
+    }
+    
+    .nav {
+        font-size: 10px;
+        line-height: 12px;
+        font-weight: bold;
+    } 
+} /* END OF min-width: 400px */
+
+
+
+@media screen and (max-width: 400px) {
+    .wrapper {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+} /* END OF max-width: 400px */
+
+
+
+@media screen and (min-width: 401px) and (max-width: 549px) {
+    .wrapper {
+        flex: 0 0 80%;
+        max-width: 80%;
+    }
+} /* END OF (min-width: 401px) and (max-width: 549px) */
+
+
+
+@media (min-width: 500px) {
+    .footer-button, .footer-button:hover {
+        width: 27.3em;
+    }
+    
+    #email {
+        width: 25em;
+    }
+    
+    #email::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(255, 255, 255, 1);
+    opacity: 1; /* Firefox */
+    text-align: left;
+    }
+
+    #email:-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: rgba(255, 255, 255, 1);
+        text-align: left;
+    }
+
+    #email::-ms-input-placeholder { /* Microsoft Edge */
+        color: rgba(255, 255, 255, 1);
+        text-align: left;
+    }
+    
+    .header h1 {
+        font-size: 80px;
+    }
+    
+    .header h5 {
+        font-size: 20px;
+        top: 280px;
+    }
+    
+    .header-desti_page h1 {
+        font-size: 80px;
+    }
+
+    .header-desti_page h5 {
+        font-size: 18px;
+    }
+    
+    .gallery_page-container {
+        column-count: 2;
+        -webkit-column-count: 2;
+        -moz-column-count: 2; 
+    }
+    
+    .nav {
+        font-size: 11px;
+        line-height: 13px;
+        font-weight: bold;
+    } 
+} /* END OF min-width: 500px */
+
+
+
+
+@media screen and (min-width: 500px) and (max-width: 575px) {
+    .wrapper-abtus {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    
+    .desti_article img {
+        height: 18em;
+        width: 60%;
+    }  
+} /* END OF (min-width: 500px) and (max-width: 575px) */
+
+
+
+@media screen and (min-width: 550px) {
+    .footer-button, .footer-button:hover {
+        width: 10em;  
+    }
+    
+    #email {
+        width: 20em;
+    } 
+    
+    .contact-text {
+        width: 50%;
+    }
+} /* END OF min-width: 550px */
+
+
+
+@media screen and (min-width: 576px) {
+    .header-headers h1 {
+        font-size: 80px;
+        text-align: center;
+    }
+    
+    .header-desti_page {
+        position: absolute;
+        color: rgba(255, 255, 255, 0.95);
+        text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.95);
+    }
+
+    .header-desti_page h1 {
+        top: 150px;
+        position: absolute;
+    }
+
+    .header-desti_page h5 {
+        position: absolute;
+        top: 250px;
+        padding-bottom: 20px;
+    }
+    
+    .desti_page {
+        margin-top: 90px;
+    }
+    
+    .wrapper-desti_page,
+    .wrapper-desti_page img {
+        height: 610px;
+    }
+    
+    
+    .destiImgContainer {
+        padding-right: 0.5px !important;
+        padding-left: 0.5px !important;
+    }
+    
+    .arrows .control-prev-icon,
+    .arrows .control-next-icon {
+        height: 610px;
+    }
+    
+    .overlay-hover-desti_page {
+        height: 610px;
+    }
+    
+    .desti_article h1 {
+        font-size: 39px;
+        text-align: center;
+        padding: 0px;
+    }
+    
+    .desti_article h4 {
+        font-size: 15px;
+        text-align: center;
+        padding: 0px;
+    }
+    
+    .grid-desti-article {
+        width: 90%;
+    }
+    
+    .desti_article img {
+        height: 22em;
+        width: 60%;
+    }
+    
+    .see-package-content-body, 
+    .desti-pkg_body {
+        column-count: 2;
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-gap: 50px;
+    }
+    
+    .viewbutton-section-itinerary, 
+    .viewbutton-section-request {
+        width: 50%;
+        float: left;
+        z-index: 3;
+    }
+    
+    .package_page .package-desti .buttons-package-pg .buttons-container-pkg-pg {
+        width: 100%;
+    } 
+    
+    .package_page .package-desti .buttons-package-pg .buttons-container-pkg-pg .viewbutton-section-itinerary2,
+    .package_page .package-desti .buttons-package-pg .buttons-container-pkg-pg .viewbutton-section-request2 {
+        width: 10%;
+        display: table-cell;
+        vertical-align: middle;
+    }
+    
+    .modal h3 {
+        text-align: left;
+        font-size: 30px;
+    }
+    
+    .modal-content p {
+        text-align: left;
+        font-size: 13px;
+        margin-left: 30px;
+    }
+    
+    .number_text {
+        width: 30%;
+    }
+    
+    .no-guest-room  .number_text {
+        width: 35%;
+    }
+    
+    .textfield {
+        width: 78%;
+    }
+    
+    .van-radio {
+        width: 60%;
+    }
+    
+    .travel-textbox .no-guest-room {
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    #pills-tour .travel-section .tour_dates .wrapper-text .date-style input, 
+    #pills-flight .travel-section .tour_dates .wrapper-text .date-style input {
+        width: 100%;
+    }
+    
+    #pills-tour .travel-textbox .dropdown-style,
+    .seat_wrapper .dropdown-style,
+    #reserve_package .travel-textbox .dropdown-style,
+    .input-width {
+        width: 78.5%;
+    }
+    
+    .input-width-100 {
+        width: 100%;
+    }
+    
+    #pills-tour .travel-textbox .dropdown-style select,
+    .seat_wrapper .dropdown-style select {
+        width: 105%;
+    }
+    
+    .tours-radio {
+        padding-left: 0px;
+        width: 90%;
+    }
+    
+    .nav {
+        font-size: 12px;
+        line-height: 14px;
+        font-weight: bold;
+    } 
+    
+    .descrip_pass p { 
+        font-size: 10px;
+    }
+} /* END OF min-width: 576px */
+
+
+
+
+@media screen and (min-width: 750px) {
+    .txtfield {
+        min-width: 500px;
+        display: inline;
+    }
+    
+    .modal-dialog {
+        max-width: 770px;
+    }
+    
+    .column-3 {
+        column-count: 3;
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+    }
+    
+    .left-align {
+        text-align: left;
+    }
+    
+    .right-align {
+        text-align: right;
+    }
+    
+    .center-align {
+        text-align: center;
+    }
+    
+    .no-guest-room {
+        width: 340px;
+        margin: auto;
+    }
+    
+    .no-guest-room .wrapper-text {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+} /* END OF min-width: 750px */
+
+
+
+@media screen and (min-width: 768px) {
+    .navigation li {
+        float: left;
+    }
+    
+    .navigation li a {
+        padding: 20px 30px;
+        border-bottom: 0px;
+        font-size: 0.6em;
+        padding: 20px 20px;
+        margin-top: 15px;
+    }
+    
+    .button_border-nav {
+        position: relative;
+        float: right;
+        right: 10px;
+    }
+    
+    .navigation ul {
+        padding: 0;
+        margin-right: 20px;
+    }
+    
+    .navigation .menu_content {
+        clear: none;
+        float: right;
+        max-height: none;
+        background-color: transparent;
+        position: relative;
+        width: auto;
+        box-shadow: none;
+        -webkit-box-shadow: none
+        -moz-box-shadow: none;
+    }
+    
+    .navigation .menu-icon {
+        display: none;
+    }
+    
+    .logo-img {
+        width: 9em;
+    }
+    
+    .grid-aboutus {
+        max-width: 80%;
+    }
+    
+    .header-headers h1 {
+        font-size: 85px;
+        text-align: center;
+    }
+    
+    .desti_article img {
+        height: 18em;
+        width: 80%;
+    }
+    
+    .desti_article .center-img {
+        width: 95%;
+    } 
+    
+    .desti_article h1 {
+        font-size: 40px;
+        text-align: left;
+    }
+    
+    .desti_article h4 {
+        font-size: 15px;
+        text-align: left;
+    }
+    
+    .col1, .col2, .col3 {
+        display: table-cell;
+        width: 28.33%;
+    }
+    
+    .see_package_page {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .wrapper-desti_pic {
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .wrapper-desti_pic img {
+        height: 350px;
+    }
+    
+    .container-desti-package, 
+    .price, 
+    .package_page .package-desti .buttons-package-pg .buttons-container-pkg-pg {
+        width: 65%;
+        margin-left: auto;
+        margin-right: auto;
+    } 
+    
+    .see_package_page .price {
+       width: 90%; 
+    }
+    
+    .txtfield {
+        min-width: 620px;
+        display: inline;
+    }
+    
+    .van-radio {
+        width: 50%;
+    }
+} /* END OF min-width: 768px */
+
+
+
+@media screen and (min-width: 851px) {
+    .copyright {
+        float: left;
+        text-align: left;
+    }
+    
+    .contacts {
+        float: right;
+        text-align: right;
+    }
+    
+    .header-desti_page h1 {
+        font-size: 100px;
+    }
+
+    .header-desti_page h5 {
+        font-size: 20px;
+        top: 280px;
+    }
+    
+    .see_package_page {
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .contact-text {
+        width: 30%;
+    }
+} /* END OF min-width: 851px */
+
+
+
+@media screen and (min-width: 992px) {
+    .desti-name-desti_page {
+        font-size: 20px;
+        padding: 15px 0px 15px 15px;
+    }
+    
+    .overlay-name-section-desti_page {
+        bottom: 40px;
+    }
+    
+    .wrapper-pills {
+        display: grid;
+        grid-template-areas: 
+            'navi content-body content-body content-body'
+            'navi content-body content-body content-body'
+            'navi content-body content-body content-body'
+            'navi content-body content-body content-body';
+        margin-right: auto;
+        margin-left: auto;
+        width: 977px;
+    }
+          
+    .nav {
+        float: left;
+        display: grid;
+        grid-template-areas: 
+            'van'
+            'room'
+            'tour'
+            'flight';
+        margin-right: auto;
+        margin-left: auto;
+    }
+    
+    .navi {
+        grid-area: navi;
+    }
+    
+    .tab-content, 
+    .nav {
+        width: 100%;
+        margin: auto;
+    }
+    
+    .tab-content {
+        padding-top: 61.156;
+        padding-bottom: 61.156;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    
+    .nav-pills .nav-link.active, 
+    .nav-pills .show>.nav-link {
+        height: 287.5px;
+    }
+
+    .nav-pills .nav-link {
+        height: 287.5px;
+    }
+} /* END OF min-width: 992px */
+
+
+
+
+@media screen and (min-width: 1000px) {
+     .header-desti_page h1 {
+        font-size: 120px;
+    }
+
+    .header-desti_page h5 {
+        font-size: 22px;
+        top: 300px;
+    }
+    
+    .desti_article h1 {
+        font-size: 50px;
+    }
+    
+    .desti_article img {
+        height: 15em;
+        width: 15em;
+    }
+    
+    .desti_article .center-img {
+        height: 20em;
+        width: 100%;
+    }
+    
+    
+    .desti_article .right-float {
+        float: right;
+        padding: 5px;
+    } 
+    
+    .desti_article .left-float {
+        float: left;
+        padding: 5px;
+    }
+    
+    .see_package_page {
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .package-desti {
+        clear:both;
+        display: flex;
+        flex-wrap: nowrap;
+    }
+    
+    .desti_pic {
+        position: relative;
+        float: left;
+        clear:both;
+        z-index: 100;
+        width: 35%;
+        height: auto;
+    }
+    
+    .wrapper-desti_pic {
+        float: left;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .wrapper-desti_pic img {
+        height: 100%;
+    }
+    
+    .grid-package {
+        clear:both;
+        background-color: rgba(244, 244, 244, 1);
+        height: auto;
+        position: relative;
+        float: left;
+        padding-top: 15px;
+    }
+    
+    .desti-pkg_body {
+        column-count: 4;
+        -webkit-column-count: 4;
+        -moz-column-count: 4;
+        column-gap: 20px;
+    }
+    
+    .container-desti-package, 
+    .price {
+        width: 98%;
+    }
+    
+    .container-desti-package {
+       max-height: 500px; 
+    }
+    
+    .gallery_page-container {
+        display: grid;
+        grid-template-areas: 
+            'img1 img1 img2 img3 img3'
+            'img4 img5 img6 img7 img8'
+            'img9 img5 img10 img11 img8';
+        grid-gap: 10px;
+        padding: 10px 10px 10px 10px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .gallery_page-container img {
+        width: 100%;
+        height: 100%;
+        opacity: 0.8;
+    }
+
+    .gallery_page-container img:hover  {
+        opacity: 1;
+
+    }
+    .gallery_img1 {
+        grid-area: img1;
+    }
+
+    .gallery_img2 {
+        grid-area: img2;
+    }
+
+    .gallery_img3 {
+        grid-area: img3;
+    }
+
+    .gallery_img4 {
+        grid-area: img4;
+    }
+
+    .gallery_img5 {
+        grid-area: img5;
+    }
+
+    .gallery_img6 {
+        grid-area: img6;
+    }
+
+    .gallery_img7 {
+        grid-area: img7;
+    }
+
+    .gallery_img8 {
+        grid-area: img8;
+    }
+
+    .gallery_img9 {
+        grid-area: img9;
+    }
+
+    .gallery_img10 {
+        grid-area: img10;
+    }
+
+    .gallery_img11 {
+        grid-area: img11;
+    }
+    
+    .txtfield {
+        min-width: 550px;
+        max-width: 800px;
+        display: inline;
+    }
+} /* END OF min-width: 1000px */
+
+
+
+
+@media screen and (min-width: 1200px) {
+    .addPadding-bottom {
+        padding-bottom: 20px;
+    }
+    
+    .wrapper-pills {
+        width: 1100px;
+    }
+
+    .nav-pills .nav-link {
+        width: 180px;
+    }
+    
+    .nav {
+        font-size: 13px;
+        line-height: 18px;
+    } 
+} /* END OF min-width: 1200px */
+
+
+
+@media screen and (min-width: 1280px) {
+    .txtfield {
+        min-width: 870px;
+        display: inline;
+    }
+} /* END OF min-width: 1280px */
+
+
+
+@media screen and (min-width: 1366px) {
+    .txtfield {
+        min-width: 915px;
+        display: inline;
+    }
+} /* END OF min-width: 1366px */

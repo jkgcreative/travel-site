@@ -1,0 +1,34 @@
+<div ng-repeat="destipkg in packages.desti" ng-if="destipkg.id == id">
+    <div class="header-headers">
+        <h1>{{ destipkg.name }}</h1>
+        <div class="back" ng-controller="mainController"><a ng-click="doTheBack()"><img src="images/ArrowBack@2x.png"> Back</a></div>
+    </div>
+    <main>
+        <div class="see_package_page">
+            <div class="see-package-cebu">
+                <div class="grid-see-package">
+                   <div ng-include="'includes/see-pkg-details.html'"></div>
+                </div> <!-- END of grid-see-package -->
+            </div>  <!-- END of see-package-cebu --> 
+
+            <div class="buttons">
+                <div class="viewbutton-section-itinerary">
+                    <button type="button" class="button_border" data-toggle="modal" data-target="#itinerary_cebu" ng-click="setData(destipkg)">Itinerary
+                    </button>
+                </div>
+                <div class="viewbutton-section-request">
+                    <button type="button" class="button_border2" data-toggle="modal" data-target="#request_package" ng-click="setData(destipkg)">Request Package</button>
+                </div>
+
+                <div class="viewbutton-section-reserve">
+                    <button type="button" class="button_fill" data-toggle="modal" data-target="#reserve_package">
+                        Reserve
+                    </button>
+                </div> 
+            </div> <!-- END of buttons -->       
+        </div> <!-- END of see_package_page -->
+    </main>
+    <div ng-include="'includes/itinerary.html'"></div>
+    <div ng-include="'includes/request-package.html'"></div>
+    <div ng-include="'includes/reserve-package.html'"></div>
+</div>

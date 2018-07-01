@@ -1,0 +1,66 @@
+
+<div class="header-desti_page">
+    <h1>Destinations</h1>
+    <h5>See our Tour Destinations offer</h5>
+</div>
+ <main>
+    <div class="desti_page">
+        <div class="destiContainer">
+            <div class="destiImgGroup row" ng-show="page1">
+                <div class="destiImgContainer col-sm-4" 
+                     ng-repeat="desti in destinations | limitTo: 3 : 0" >
+                    <div class="wrapper-desti_page">
+                        <a ui-sref="destinationArticle({ id: desti.id })" 
+                           title="{{ desti.title }}" 
+                           class="thumb">
+                            <img src="{{ desti.urlPhoto }}" 
+                                 alt="{{ desti.altPhoto }}" 
+                                 class="mx-auto"/>
+                            <div class="overlay-name-section-desti_page">
+                                <p class="desti-name-desti_page">{{ desti.name }}</p>
+                            </div>
+                             <div class="overlay-hover-desti_page">
+                                <div class="hover-text">{{ hoverText }}</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="destiImgGroup row" ng-show="page2">
+                <div class="destiImgContainer col-sm-4" 
+                     ng-repeat="desti in destinations | limitTo: 3 : 3" >
+                    <div class="wrapper-desti_page">
+                        <a ui-sref="destinationArticle({ id: desti.id })" 
+                           title="{{ desti.title }}" 
+                           class="thumb">
+                            <img src="{{ desti.urlPhoto }}" 
+                                 alt="{{ desti.altPhoto }}" 
+                                 class="mx-auto"/>
+                            <div class="overlay-name-section-desti_page">
+                                <p class="desti-name-desti_page">{{ desti.name }}</p>
+                            </div>
+                             <div class="overlay-hover-desti_page">
+                                <div class="hover-text">{{ hoverText }}</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arrows">
+                <a class="control-prev-icon" ng-click="pg1()">
+                    <img src="images/arrowCarousel_ic@3x.png" 
+                         title="prev" 
+                         ng-class="{'img_opacity': page1 == true}"/>
+                </a>
+                <a class="control-next-icon" ng-click="pg2()">
+                    <img src="images/arrowCarousel_ic@3x.png" 
+                         title="next" 
+                         ng-class="{'img_opacity': page2 == true}"/>
+                </a>
+            </div>
+        </div><!-- END OF destiContainer -->
+    </div> <!-- END OF desti_page -->
+ </main>
+

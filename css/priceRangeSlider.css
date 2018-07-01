@@ -1,0 +1,118 @@
+/* price range css */
+.price-range-container {
+    height: 65px;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.rzslider {
+  margin: 25px 0 10px 0;
+}
+
+.rzslider .rz-bar {
+    background: rgba(210, 222, 209, 1);
+}
+
+.rzslider .rz-pointer {
+    top: -.5em;
+    z-index: 3;
+    width: 17px;
+    height: 17px;
+    background-color: rgba(255, 255, 255, 1);
+    border: 3px solid rgba(80, 111, 78, 1);
+}
+
+.rzslider .rz-selection {
+    background: rgba(80, 111, 78, 1);
+}
+
+.rzslider .rz-bubble.rz-limit {
+    color: rgba(80, 111, 78, 1);
+    font-weight: normal;  
+}
+
+.rzslider .rz-bubble {
+    bottom: 8px;
+    cursor: default;
+    color: rgba(80, 111, 78, 1);
+    font-family: 'Arial', sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.rzslider .rz-pointer::after {
+    background: transparent;
+    top: 2.5px;
+    left: 2.5px;
+    width: 6px;
+    height: 6px;
+}
+
+.rzslider .rz-pointer.rz-active:after {
+  background-color: rgba(80, 111, 78, 1);
+}
+
+.container-price-text {
+    width: 100%;
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    height: 30px;
+    margin: auto;
+}
+
+.min-wrapper {
+    height: 30px;
+    width: 50%;
+    padding: auto 5px; 
+    float: left;
+}
+
+.max-wrapper {
+    height: 30px;
+    width: 50%;
+    padding: auto 10px;
+    float: right;
+}
+
+.min-wrapper #pesoMin {
+    position: relative;
+    float: left;
+}
+
+.max-wrapper #pesoMax {
+    position: relative;
+    float: right;
+}
+
+.min-wrapper #txtOutputMin {
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    position: relative;
+    float: left;
+    text-align: center;
+}
+.max-wrapper #txtOutputMax {
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    position: relative;
+    text-align: center;
+    float: right;
+}
+
+#pesoMin, 
+#pesoMax, 
+#txtOutputMin, 
+#txtOutputMax {
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    color: rgba(80, 111, 78, 1);
+    
+}
+
+.container-price-text input {
+    border: 1px solid rgba(210, 222, 209, 0.2);
+    width: 40px;
+}
+.container-price-text input:hover, 
+.container-price-text input:focus {
+    border: 1px solid rgba(210, 222, 209, 1);
+}

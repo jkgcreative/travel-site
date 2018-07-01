@@ -1,0 +1,76 @@
+<div id="banner">
+    <div class="header">
+        <h1>EE Travel &amp; Tours</h1>
+        <h5>&ldquo;Love for travel&rdquo;</h5>
+    </div>
+</div>
+<div class="desti_homepage">
+    <h3>Destinations</h3>
+    <div class="grid-desti-home row" ng-controller="destiController">
+        <div class="wrapper col-md-3 col-sm-6 col-12" ng-repeat="desti in destinations | limitTo : 4">
+            <a ui-sref="destinationArticle({ id: desti.id })">
+                <img ng-src="{{ desti.urlPhoto }}" alt="{{ desti.altPhoto }}"/><div class="overlay-name-section">
+                    <p class="desti-name">{{ desti.name }}</p>
+                </div>
+                <div class="overlay-hover">
+                    <div class="hover-text">{{ hoverText }}</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="viewbutton-section">
+        <a ui-sref="destination" class="button_fill">View More</a>
+    </div> 
+</div>
+
+<div class="about_us" ng-controller="abtController">
+    <h3>What we do</h3>
+    <div class="grid-aboutus row">
+        <div class="wrapper-abtus col-md-3 col-sm-6 col-12" ng-repeat="abtUs in whatWeDo">
+            <img src="{{ abtUs.servicesIcon }}" alt="{{ abtUs.servicesAlt }}"/>
+            <p class="abtus-caption">{{ abtUs.servicesDesc }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="client_testi">
+    <h3>Client Testimonials</h3>
+    <div id="testi_carousel" class="carousel slide" data-ride="carousel">
+        <ul class="carousel-indicators">
+            <li data-target="#testi_carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#testi_carousel" data-slide-to="1"></li>
+            <li data-target="#testi_carousel" data-slide-to="2"></li>
+        </ul>
+        <div class="carousel-inner" ng-controller="testiController">
+            <div class="carousel-item active row">
+                <div class="wrapper-testi col-md-6 col-sm-12 col-12" ng-repeat="testis in clientTesti | limitTo: 1:0">
+                    <p class="testi-content">{{ testis.testi }}</p>
+                    <p class="client-names">- {{ testis.name }}</p>
+                </div><div class="wrapper-testi col-md-6 col-sm-12 col-12" ng-repeat="testis in clientTesti | limitTo: 1:1">
+                    <p class="testi-content">{{ testis.testi }}</p>
+                    <p class="client-names">- {{ testis.name }}</p>
+                </div>
+            </div> <!-- end carousel-item -->
+            <div class="carousel-item row">
+                <div class="wrapper-testi col-md-6 col-sm-12 col-12" ng-repeat="testis in clientTesti | limitTo: 1:1">
+                    <p class="testi-content">{{ testis.testi }}</p>
+                    <p class="client-names">- {{ testis.name }}</p>
+                </div><div class="wrapper-testi col-md-6 col-sm-12 col-12" ng-repeat="testis in clientTesti | limitTo: 1:0">
+                    <p class="testi-content">{{ testis.testi }}</p>
+                    <p class="client-names">- {{ testis.name }}</p>
+                </div>
+            </div> <!-- end carousel-item -->
+            <div class="carousel-item row">
+                <div class="wrapper-testi col-md-6 col-sm-12 col-12" ng-repeat="testis in clientTesti | limitTo: 1:0">
+                    <p class="testi-content">{{ testis.testi }}</p>
+                    <p class="client-names">- {{ testis.name }}</p>
+                </div><div class="wrapper-testi col-md-6 col-sm-12 col-12" ng-repeat="testis in clientTesti | limitTo: 1:1">
+                    <p class="testi-content">{{ testis.testi }}</p>
+                    <p class="client-names">- {{ testis.name }}</p>
+                </div>
+            </div> <!-- end carousel-item -->
+        </div><!-- end carousel-inner -->
+    </div> <!-- end testi_carousel -->
+</div>
+

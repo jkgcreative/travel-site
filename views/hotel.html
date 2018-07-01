@@ -1,0 +1,281 @@
+<div ng-controller="hotelFormsController">
+    <form name="hotelForm" ng-submit="submitHotelForm(hotelForm.$valid)" novalidate>
+        <div ng-show="success">
+            <div class="alert alert-success fade show">
+                <a ng-click="hideAlert()" class="close" >&times;</a>
+                <strong>Success!</strong> Your reservation has been sent. Confirmation will be sent to your email. Thank you!
+            </div>
+        </div>
+        <p class="text-legend text-required text-margin"> <b>*</b> Denotes Required Fields </p> 
+        <div class="pad">
+            <h5>Personal Information:</h5>
+            <div class="personal-info row">
+                <div class="wrapper-text col-sm-6">
+                <div class="box-text" ng-class="{ 'box-text-error' : hotelForm.fname.$touched && hotelForm.fname.$invalid }">
+                    <div class="text-content">First Name</div>
+                </div><input type="text" 
+                             name="fname" 
+                             class="textbox" 
+                             placeholder="First Name *" 
+                             ng-model="hotelFormData.fname"
+                             ng-pattern="text"
+                             ng-class="{ 'textbox-error' : hotelForm.fname.$touched && hotelForm.fname.$invalid }" 
+                             required>
+                <div ng-messages="hotelForm.fname.$error" 
+                     ng-show="hotelForm.fname.$touched && hotelForm.fname.$invalid">
+                    <p class="text-error-msg no-padding" ng-message="required">Your First Name is required.</p>
+                    <p class="text-error-msg no-padding" ng-message="pattern">Your First Name must be in alphabet letters.</p>
+                </div>
+            </div>
+                <div class="wrapper-text col-sm-6">
+                    <div class="box-text"
+                         ng-class="{ 'box-text-error' : hotelForm.lname.$touched && hotelForm.lname.$invalid }">
+                        <div class="text-content">Last Name</div>
+                    </div><input type="text" 
+                                 name="lname" 
+                                 placeholder="Last Name *" 
+                                 class="textbox" 
+                                 ng-model="hotelFormData.lname"
+                                 ng-pattern="text"
+                                 ng-class="{ 'textbox-error' : hotelForm.lname.$touched && hotelForm.lname.$invalid }"
+                                 required>
+                    <div ng-messages="hotelForm.lname.$error"
+                     ng-show="hotelForm.lname.$touched && hotelForm.lname.$invalid">
+                        <p class="text-error-msg no-padding" ng-message="required">Your Last Name is required.</p>
+                        <p class="text-error-msg no-padding" ng-message="pattern">Your Last Name must be in alphabet letters.</p>
+                    </div>
+            </div>
+
+                <div class="wrapper-text col-sm-6">
+                <div class=box-text
+                     ng-class="{ 'box-text-error' : hotelForm.email.$touched && hotelForm.email.$invalid }">
+                    <div class="text-content">Email</div>
+                </div><input type="email" 
+                             name="email" 
+                             placeholder="Email Address *" 
+                             class="textbox" 
+                             ng-model="hotelFormData.email"
+                             ng-class="{ 'textbox-error' : hotelForm.email.$touched && hotelForm.email.$invalid }"
+                             required>
+                <div ng-messages="hotelForm.email.$error" 
+                     ng-show="hotelForm.email.$touched && hotelForm.email.$invalid">
+                    <p class="text-error-msg no-padding" ng-message="required">Your Email Address is required.</p>
+                    <p class="text-error-msg no-padding" ng-message="email">Please enter a valid Email Address.</p>
+                </div>
+            </div>
+
+                <div class="wrapper-text col-sm-6">
+                <div class=box-text
+                     ng-class="{ 'box-text-error' : hotelForm.mobile.$touched && hotelForm.mobile.$invalid }">
+                    <div class="text-content">Mobile No.</div>
+                </div><input type="text" 
+                             name="mobile" 
+                             placeholder="Mobile Number (09XXXXXXXXX)" 
+                             class="textbox" 
+                             ng-model="hotelFormData.mobile" 
+                             ng-pattern="regEx"
+                             ng-class="{ 'textbox-error' : hotelForm.mobile.$touched && hotelForm.mobile.$invalid }">
+                <div ng-messages="hotelForm.mobile.$error" 
+                 ng-show="hotelForm.mobile.$touched && hotelForm.mobile.$invalid">
+                    <p class="text-error-msg no-padding" ng-message="pattern">Please enter a valid Mobile Number.</p>
+                </div>
+            </div>
+            </div> <!-- END OF PERSONAL INFO -->
+        </div> <!-- END OF PARENT PERSONAL -->
+
+        <div class="accom-section">
+            <h5>Accommodation Details:</h5>
+            <div class="travel-textbox">
+                <div class="row">
+                    <div class="wrapper-text col-sm-6">
+                        <div class=box-text>
+                            <div class="text-content">Destination</div>
+                        </div><span class="dropdown-style">
+                            <select name="desti" 
+                                    ng-model="hotelFormData.desti" 
+                                    required>
+                                <option ng-repeat="desti in destiChoices" 
+                                        value="{{ desti.value }}" 
+                                        ng-selected="selectedItemValue == desti.value" 
+                                        ng-disabled="selectedItemValue == desti.value">
+                                    {{ desti.name }}
+                                </option>
+                            </select>
+                        </span>
+                    </div>
+
+                    <div class="no-guest-room row col-sm-6">
+                        <div class="wrapper-text num_wrapper col-sm-6"
+                             ng-class="{ 'no-padding-bottom add-padding-top' : hotelForm.numGuest.$touched && hotelForm.numGuest.$invalid }">
+                            <div class="box-text" 
+                                 ng-class="{ 'box-text-error' : hotelForm.numGuest.$touched && hotelForm.numGuest.$invalid }">
+                                <div class="text-content">Number of Guest</div>
+                            </div><input type="number" 
+                                         name="numGuest" 
+                                         class="number_text" 
+                                         min="1" 
+                                         max="100" 
+                                         placeholder="0 *" 
+                                         ng-model="hotelFormData.numGuest" 
+                                         ng-class="{ 'textbox-error' : hotelForm.numGuest.$touched && hotelForm.numGuest.$invalid }"
+                                         required>
+                            <div ng-messages="hotelForm.numGuest.$error" 
+                             ng-show="hotelForm.numGuest.$touched && hotelForm.numGuest.$invalid">
+                                <p class="text-error-msg no-padding" ng-message="required">Number of Guest is required.</p>
+                                <p class="text-error-msg no-padding" ng-message="min">Number of Guest must be 1 or more than 1.</p>
+                                <p class="text-error-msg no-padding" ng-message="number">Please input a number only.</p>
+                            </div>
+                        </div>
+
+
+                        <div class="wrapper-text num_wrapper col-sm-6"
+                             ng-class="{ 'no-padding-bottom add-padding-top' : hotelForm.numRoom.$touched && hotelForm.numRoom.$invalid }">
+                            <div class="box-text"
+                                 ng-class="{ 'box-text-error' : hotelForm.numRoom.$touched && hotelForm.numRoom.$invalid }">
+                                <div class="text-content">Number of Room</div>
+                            </div><input type="number" 
+                                         name="numRoom" 
+                                         class="number_text" 
+                                         min="1" 
+                                         max="100" 
+                                         placeholder="0 *" 
+                                         ng-model="hotelFormData.numRoom" 
+                                         ng-class="{ 'textbox-error' : hotelForm.numRoom.$touched && hotelForm.numRoom.$invalid }"
+                                         required>
+                            <div ng-messages="hotelForm.numRoom.$error" 
+                             ng-show="hotelForm.numRoom.$touched && hotelForm.numRoom.$invalid">
+                                <p class="text-error-msg no-padding" ng-message="required">Number of Room is required.</p>
+                                <p class="text-error-msg no-padding" ng-message="min">Number of Room must be 1 or more than 1.</p>
+                                <p class="text-error-msg no-padding" ng-message="number">Please input a number only.</p>
+                            </div>
+                        </div>
+
+                    </div> <!-- END OF no-guest-room -->
+                </div>  <!-- END OF row -->
+
+            <div class="tour_dates row">
+                <div class="wrapper-text col-sm-6 inlineBlock"
+                     ng-class="{ 'no-padding-bottom add-padding-top' : hotelForm.checkIn.$touched && hotelForm.checkIn.$invalid }">
+                    <div class="box-text"
+                         ng-class="{ 'box-text-error' : hotelForm.checkIn.$touched && hotelForm.checkIn.$invalid }">
+                        <div class="text-content">Check-in</div>
+                    </div><span class="date-style"
+                                ng-class="{ 'textbox-error' : hotelForm.checkIn.$touched 
+                        && hotelForm.checkIn.$invalid }"><input type="date" 
+                                                                name="checkIn" 
+                                                                ng-model="hotelFormData.checkIn" 
+                                                                ui-validate="'checkInCheck($value)'" 
+                                                                ng-class="{ 'date-invalid' : hotelForm.checkIn.$touched && hotelForm.checkIn.$invalid }"
+                                                                required></span>
+                    <div ng-messages="hotelForm.checkIn.$error" 
+                     ng-show="hotelForm.checkIn.$touched && hotelForm.checkIn.$invalid">
+                        <p class="text-error-msg" ng-message="required">Check-in is required.</p>
+                        <p class="text-error-msg" ng-show="checkInErrMsg">Check-in Date must be greater than to current date.</p>
+                    </div>
+                </div>
+
+                <div class="wrapper-text col-sm-6"
+                     ng-class="{ 'no-padding-bottom add-padding-top' : hotelForm.checkOut.$touched && hotelForm.checkOut.$invalid }">
+                    <div class="box-text"
+                         ng-class="{ 'box-text-error' : hotelForm.checkOut.$touched && hotelForm.checkOut.$invalid }">
+                        <div class="text-content">Check-out</div>
+                    </div><span class="date-style"
+                                ng-class="{ 'textbox-error' : hotelForm.checkOut.$touched 
+                        && hotelForm.checkOut.$invalid }"><input type="date" 
+                                                                 name="checkOut" 
+                                                                 ng-model="hotelFormData.checkOut" 
+                                                                 ui-validate="'checkOutCheck($value)'"
+                                                                 ng-class="{ 'date-invalid' : hotelForm.checkOut.$touched && hotelForm.checkOut.$invalid }"
+                                                                 required></span>
+                    <div ng-messages="hotelForm.checkOut.$error" 
+                     ng-show="hotelForm.checkOut.$touched && hotelForm.checkOut.$invalid">
+                        <p class="text-error-msg" ng-message="required">Check-out is required.</p>
+                        <p class="text-error-msg" ng-show="checkOutErrMsg">Check-out must be greater than or equal to Check-in Date.</p>
+                    </div>
+                </div>
+            </div> <!-- END OF tour_dates -->
+        </div> <!-- END OF TRAVEL TEXTBOX -->
+            <div class="price_star row">
+                    <div class="price_range wrapper-text col-12 col-sm-6">
+                        <div class=box-text>
+                            <div class="text-content">Price Range</div>
+                        </div><span class="price-range-container">
+                            <rzslider rz-slider-model="priceRangeSlider.minValue" 
+                                      rz-slider-high="priceRangeSlider.maxValue" 
+                                      rz-slider-options="priceRangeSlider.options"></rzslider>
+                            <div class="container-price-text">
+                                <span class="min-wrapper">
+                                    <span id="pesoMin">PHP</span><input type="text" 
+                                                                        name="outputMin" 
+                                                                        id="txtOutputMin" 
+                                                                        ng-model="priceRangeSlider.minValue">
+                                </span>
+
+                                <span class="max-wrapper">
+                                    <input type="text" 
+                                           id="txtOutputMax" 
+                                           name="outputMax" 
+                                           ng-model="priceRangeSlider.maxValue"><span id="pesoMax">PHP</span>
+                                </span>
+
+                            </div>
+                        </span><!-- END OF price-range-container -->
+                    </div>
+
+                    <div class="star_rating wrapper-text col-12 col-sm-6">
+                        <div class="box-text">
+                            <div class="text-content">Star Rating</div>
+                        </div><span class="rating-grid"><label class="container_rating">
+                                <input type="radio" 
+                                       name="rating" 
+                                       value="rating-1"  
+                                       ng-model="hotelFormData.rating">
+                                <span class="rating_new"><span class="rating_new-content">1<img src="images/ic_star_rating.png" alt="Star Rating Icon"></span></span>
+                        </label><label class="container_rating">
+                                <input type="radio" 
+                                       name="rating" 
+                                       value="rating-2" 
+                                       ng-model="hotelFormData.rating">
+                                <span class="rating_new"><span class="rating_new-content">2<img src="images/ic_star_rating.png" alt="Star Rating Icon"></span></span>
+                        </label><label class="container_rating">
+                                <input type="radio" 
+                                       name="rating" 
+                                       value="rating-3" 
+                                       ng-model="hotelFormData.rating">
+                                <span class="rating_new"><span class="rating_new-content">3<img src="images/ic_star_rating.png" alt="Star Rating Icon"></span></span>
+                        </label><label class="container_rating">
+                                <input type="radio" 
+                                       name="rating" 
+                                       value="rating-4" 
+                                       ng-model="hotelFormData.rating">
+                                <span class="rating_new"><span class="rating_new-content">4<img src="images/ic_star_rating.png" alt="Star Rating Icon"></span></span>
+                        </label><label class="container_rating">
+                                <input type="radio" 
+                                       name="rating" 
+                                       value="rating-5" 
+                                       ng-model="hotelFormData.rating">
+                                <span class="rating_new"><span class="rating_new-content">5<img src="images/ic_star_rating.png" alt="Star Rating Icon"></span></span>
+                        </label>
+                        </span><!-- END OF rating-grid -->
+
+                    </div><!-- END OF wrapper-text -->
+            </div><!-- END OF price_star col-2 -->
+        </div> <!-- END OF ACCOM SECTION -->
+
+        <div class="textareafield row">
+            <div class="wrapper-text col-12">
+                <div class=box-text-field>
+                    <div class="text-content-field">Special Request</div>
+            </div><textarea name="specialReq" 
+                            class="textfield" 
+                            placeholder="Special Request" 
+                            ng-model="hotelFormData.specialReq"></textarea>
+            </div> <!-- END OF TEXTAREA --> 
+        </div> <!-- END OF textareafield -->
+
+
+        <div class="submit-section">
+            <button ng-disabled="hotelForm.$invalid" type="submit" class="button_border">Submit</button>
+        </div> <!-- END OF SUBMIT-SECTION -->  
+    </form>
+</div>

@@ -1,0 +1,133 @@
+<div id="itinerary_cebu" class="modal" data-backdrop="static" data-keyboard="false" ng-controller="itineraryFormsController">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="closebtnmodal">
+                <button type="button" 
+                        class="close" 
+                        data-dismiss="modal" 
+                        ng-click="resetForm()">
+                    &times;
+                </button>
+            </div>
+            <div>
+                <h3>Request Itinerary: {{ destiData.name }}</h3>
+                <p class="text-legend text-required"> <b>*</b> Denotes Required Fields </p>
+                <form name="destiItinerary" 
+                      ng-submit="submitItiForm(destiItinerary.$valid)" 
+                      novalidate>
+                    <div ng-show="success">
+                        <div class="alert alert-success fade show">
+                            <a ng-click="hideAlert()" class="close" >&times;</a>
+                            <strong>Success!</strong> Requested Itineray will be sent on your email.
+                        </div>
+                    </div>
+                    <div class="days-section">
+                        <h5>Days: <span class="text-required">*</span></h5>
+                        <ul ng-repeat="day in itineraryDays">
+                            <li>
+                                <label class="container_checkbox"> {{ day.day }}
+                                    <input type="checkbox" 
+                                           name="days" 
+                                           value="{{ day.day }}" 
+                                           ng-model="checked" 
+                                           ng-required="selectedItiDays.length == 0" 
+                                           ng-click="toggleItiDays(day)" 
+                                           ng-checked="selectedItiDays.indexOf(day) > -1">
+                                    <span class="checkbox_new"></span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div> <!-- END OF DAYS SECTION -->
+
+                    <div>
+                        <h5>Personal Information:</h5>
+                        <div class="personal-info row">
+                            <div class="wrapper-text col-sm-6" 
+                                 ng-class="{ 'no-padding-bottom add-padding-top' : destiItinerary.fname.$touched && destiItinerary.fname.$invalid }">
+                                <div class="box-text" ng-class="{ 'box-text-error' : destiItinerary.fname.$touched && destiItinerary.fname.$invalid }">
+                                    <div class="text-content">First Name</div>
+                                </div><input type="text" 
+                                             name="fname" 
+                                             class="textbox" 
+                                             placeholder="First Name *" 
+                                             ng-model="itiFormData.fname"
+                                             ng-pattern="text"
+                                             ng-class="{ 'textbox-error' : destiItinerary.fname.$touched && destiItinerary.fname.$invalid }" 
+                                             required>
+                                <div ng-messages="destiItinerary.fname.$error" 
+                                     ng-show="destiItinerary.fname.$touched && destiItinerary.fname.$invalid">
+                                    <p class="text-error-msg no-padding" ng-message="required">Your First Name is required.</p>
+                                    <p class="text-error-msg no-padding" ng-message="pattern">Your First Name must be in alphabet letters.</p>
+                                </div>
+                            </div>
+
+                            <div class="wrapper-text col-sm-6" 
+                                 ng-class="{ 'no-padding-bottom add-padding-top' : destiItinerary.lname.$touched && destiItinerary.lname.$invalid }">
+                                <div class="box-text"
+                                     ng-class="{ 'box-text-error' : destiItinerary.lname.$touched && destiItinerary.lname.$invalid }">
+                                    <div class="text-content">Last Name</div>
+                                </div><input type="text" 
+                                             name="lname" 
+                                             placeholder="Last Name *" 
+                                             class="textbox" 
+                                             ng-model="itiFormData.lname"
+                                             ng-pattern="text"
+                                             ng-class="{ 'textbox-error' : destiItinerary.lname.$touched && destiItinerary.lname.$invalid }"
+                                             required>
+                                <div ng-messages="destiItinerary.lname.$error"
+                                     ng-show="destiItinerary.lname.$touched && destiItinerary.lname.$invalid">
+                                    <p class="text-error-msg no-padding" ng-message="required">Your Last Name is required.</p>
+                                    <p class="text-error-msg no-padding" ng-message="pattern">Your Last Name must be in alphabet letters.</p>
+                                </div>
+                            </div>
+
+                            <div class="wrapper-text col-sm-6" 
+                                 ng-class="{ 'no-padding-bottom add-padding-top' : destiItinerary.email.$touched && destiItinerary.email.$invalid }">
+                                <div class=box-text
+                                     ng-class="{ 'box-text-error' : destiItinerary.email.$touched && destiItinerary.email.$invalid }">
+                                    <div class="text-content">Email</div>
+                                </div><input type="email" 
+                                             name="email" 
+                                             placeholder="Email Address *" 
+                                             class="textbox" 
+                                             ng-model="itiFormData.email"
+                                             ng-class="{ 'textbox-error' : destiItinerary.email.$touched && destiItinerary.email.$invalid }"
+                                             required>
+                                <div ng-messages="destiItinerary.email.$error" 
+                                     ng-show="destiItinerary.email.$touched && destiItinerary.email.$invalid">
+                                    <p class="text-error-msg no-padding" ng-message="required">Your Email Address is required.</p>
+                                    <p class="text-error-msg no-padding" ng-message="email">Please enter a valid Email Address.</p>
+                                </div>
+                            </div>
+
+
+
+                            <div class="wrapper-text col-sm-6"
+                                 ng-class="{ 'no-padding-bottom add-padding-top' : destiItinerary.mobile.$touched && destiItinerary.mobile.$invalid }">
+                                <div class=box-text
+                                     ng-class="{ 'box-text-error' : destiItinerary.mobile.$touched && destiItinerary.mobile.$invalid }">
+                                    <div class="text-content">Mobile No.</div>
+                                </div><input type="text" 
+                                             name="mobile" 
+                                             placeholder="Mobile Number (09XXXXXXXXX)" 
+                                             class="textbox" 
+                                             ng-model="itiFormData.mobile" 
+                                             ng-pattern="regEx"
+                                             ng-class="{ 'textbox-error' : destiItinerary.mobile.$touched && destiItinerary.mobile.$invalid }">
+                                <div ng-messages="destiItinerary.mobile.$error" 
+                                 ng-show="destiItinerary.mobile.$touched && destiItinerary.mobile.$invalid">
+                                    <p class="text-error-msg no-padding" ng-message="pattern">Please enter a valid Mobile Number.</p>
+                                </div>
+                            </div>
+                        </div> <!-- END OF PERSONAL INFO -->
+                    </div> <!-- END OF PARENT PERSONAL -->
+
+
+                    <div class="submit-section">
+                        <button ng-disabled="destiItinerary.$invalid" type="submit" class="button_border">Submit</button>
+                    </div> <!-- END OF SUBMIT-SECTION -->
+                </form>
+            </div>
+        </div> <!-- END OF MODAL-CONTENT -->
+    </div> <!-- END OF MODAL-DIALOG -->    
+</div> <!-- END OF MODAL -->

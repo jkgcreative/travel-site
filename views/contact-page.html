@@ -1,0 +1,134 @@
+<div id="contact-pg">
+    <div class="header-headers">
+        <h1>Contact Us</h1>
+    </div>
+    <main>
+        <div class="contact_page" ng-controller="footerController">
+            <div class="contact_page-container">
+                <div class="contact_page-text">
+                    <p class="contact-text">Any questions? You may send us a message or reach out to our contact details below:</p>
+                    <p class="contact-details">
+                    <img ng-src="{{contacts.phoneUrl}}" alt="{{ phone.alt }}"/> {{ phone.number }} |
+                    <img ng-src="{{contacts.emailUrl}}" alt="{{ email.alt }}"/> {{ email.emailAdd }} | 
+                    <a href="{{ social.url }}" target="_blank">
+                        <img ng-src="{{contacts.socialUrl}}" alt="{{ social.alt }}"/>
+                    </a>
+                </p>
+                </div>
+
+                <div class="contact_us_info-container" ng-controller="contactFormsController">
+                    <form name="contactPgForm" ng-submit="submitcontactPgForm(contactPgForm.$valid)" novalidate>
+                    <div ng-show="success">
+                        <div class="alert alert-success fade show">
+                            <a ng-click="hideAlert()" class="close" >&times;</a>
+                            <strong>Success!</strong> Your message has been sent.
+                        </div>
+                    </div>
+                    <p class="text-legend text-required"> <b>*</b> Denotes Required Fields </p>
+                    <div class="personal-info row">
+                        <div class="wrapper-text col-sm-6">
+                            <div class="box-text" 
+                                 ng-class="{ 'box-text-error' : contactPgForm.fname.$touched && contactPgForm.fname.$invalid }">
+                                <div class="text-content">First Name</div>
+                            </div><input type="text" 
+                                         name="fname" 
+                                         class="textbox" 
+                                         placeholder="First Name *" 
+                                         ng-model="contactPgFormData.fname"
+                                         ng-pattern="text"
+                                         ng-class="{ 'textbox-error' : contactPgForm.fname.$touched && contactPgForm.fname.$invalid }"
+                                         required>
+                            <div ng-messages="contactPgForm.fname.$error" 
+                                 ng-show="contactPgForm.fname.$touched && contactPgForm.fname.$invalid">
+                                <p class="text-error-msg" ng-message="required">Your First Name is required.</p>
+                                <p class="text-error-msg" ng-message="pattern">Your First Name must be in alphabet letters.</p>
+                            </div>
+                        </div>
+
+                        <div class="wrapper-text col-sm-6">
+                            <div class=box-text 
+                                 ng-class="{ 'box-text-error' : contactPgForm.lname.$touched && contactPgForm.lname.$invalid }">
+                                <div class="text-content">Last Name</div>
+                            </div><input type="text" 
+                                         name="lname" 
+                                         placeholder="Last Name *" 
+                                         class="textbox" 
+                                         ng-model="contactPgFormData.lname"
+                                         ng-pattern="text"
+                                         ng-class="{ 'textbox-error' : contactPgForm.lname.$touched && contactPgForm.lname.$invalid }" 
+                                         required>
+                            <div ng-messages="contactPgForm.lname.$error" 
+                                 ng-show="contactPgForm.lname.$touched && contactPgForm.lname.$invalid">
+                                <p class="text-error-msg" ng-message="required">Your Last Name is required.</p>
+                                <p class="text-error-msg" ng-message="pattern">Your Last Name must be in alphabet letters.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="wrapper-text col-sm-6">
+                            <div class=box-text 
+                                 ng-class="{ 'box-text-error' : contactPgForm.email.$touched && contactPgForm.email.$invalid }">
+                                <div class="text-content">Email</div>
+                            </div><input type="email" 
+                                         name="email" 
+                                         placeholder="Email Address *" 
+                                         class="textbox" 
+                                         ng-model="contactPgFormData.email"
+                                         ng-class="{ 'textbox-error' : contactPgForm.email.$touched && contactPgForm.email.$invalid }"
+                                         required>
+                            <div ng-messages="contactPgForm.email.$error"
+                                 ng-show="contactPgForm.email.$touched && contactPgForm.email.$invalid">
+                                <p class="text-error-msg" ng-message="required">Your Email Address is required.</p>
+                                <p class="text-error-msg" ng-message="email">Please enter a valid Email Address.</p>
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="wrapper-text col-sm-6">
+                            <div class=box-text 
+                                 ng-class="{ 'box-text-error' : contactPgForm.mobile.$touched && contactPgForm.mobile.$invalid }">
+                                <div class="text-content">Mobile No.</div>
+                            </div><input type="text" 
+                                         name="mobile" 
+                                         placeholder="Mobile Number (09XXXXXXXXX)" 
+                                         class="textbox" 
+                                         ng-model="contactPgFormData.mobile" 
+                                         ng-pattern="regEx" 
+                                         ng-class="{ 'textbox-error' : contactPgForm.mobile.$touched && contactPgForm.mobile.$invalid }">
+                            <div ng-messages="contactPgForm.mobile.$error" ng-show="contactPgForm.mobile.$touched && contactPgForm.mobile.$invalid">
+                                <p class="text-error-msg" ng-message="pattern">Please enter a valid Mobile Number.</p>
+                            </div>
+                        </div>
+                        
+                    </div> <!-- END OF PERSONAL INFO -->
+
+                    <div class="textareafield row">
+                            <div class="wrapper-text col-12">
+                                <div class=box-text-field 
+                                     ng-class="{ 'box-text-error' : contactPgForm.message.$touched && contactPgForm.message.$invalid }">
+                                    <div class="text-content-field">Your Message</div>
+                                </div><textarea name="message" 
+                                                class="textfield" 
+                                                placeholder="Message *" 
+                                                ng-model="contactPgFormData.message" 
+                                                ng-class="{ 'textbox-error' : contactPgForm.message.$touched && contactPgForm.message.$invalid }"
+                                                required></textarea>
+                            </div> <!-- END OF TEXTAREA --> 
+                        <div class="col-12" ng-messages="contactPgForm.message.$error" ng-show="contactPgForm.message.$touched && contactPgForm.message.$invalid">
+                                    <p class="text-error-msg no-padding" ng-message="required">Your message is required.</p>
+                                </div>
+                            
+                        </div> <!-- END OF textareafield -->
+
+                    <div class="submit-section">
+                        <button ng-disabled="contactPgForm.$invalid" type="submit" class="button_border">Submit</button>
+                    </div> <!-- END OF SUBMIT-SECTION -->
+                    </form>
+                </div> <!-- END OF contact_page-container -->
+
+            </div>
+        </div> <!-- END OF contact_page -->
+    </main>
+</div>
+
+        

@@ -1,0 +1,55 @@
+<div class="header-headers">
+    <h1>Destinations</h1>
+    <div class="back" ng-controller="mainController"><a ng-click="doTheBack()"><img src="images/ArrowBack@2x.png"> Back</a></div>
+</div>
+<main>
+    <div ui-view class="desti_article" ng-repeat="desti in destinations" ng-if="desti.id == id">
+        <div class="article">
+            <div class="grid-desti-article">
+                <div class="col1">
+                    <h1>{{ desti.name }}</h1>
+                    <p>{{ desti.destiDesc }} (<a href="{{ destiArticles.sourceUrl }}" target="_blank">{{ desti.sourceUrl }}</a>)</p>
+                    <h4>Top Tourist Destinations / Activities:</h4>
+                    <div class="addPadding-bottom" 
+                         ng-repeat="topDesti in desti.topDesti | limitTo: 1">
+                        <h5>{{ topDesti.name }}</h5>
+                        <img ng-src="{{ topDesti.urlPhoto }}" 
+                             alt="{{ topDesti.altPhoto }}" 
+                             title="{{ topDesti.title }}" 
+                             class="{{ topDesti.class }}">
+                        <p>{{ topDesti.desc }}</p>
+                    </div>
+                </div>
+
+                <div class="col2">
+                    <div class="addPadding-bottom" 
+                         ng-repeat="topDesti in desti.topDesti | limitTo: 3 : 1">
+                    <h5>{{ topDesti.name }}</h5>
+                        <img ng-src="{{ topDesti.urlPhoto }}" 
+                             alt="{{ topDesti.altPhoto }}" 
+                             title="{{ topDesti.title }}" 
+                             class="{{ topDesti.class }}">
+                        <p>{{ topDesti.desc }}</p>
+                    </div>
+                </div>
+
+                <div class="col3">
+                    <div class="addPadding-bottom" 
+                         ng-repeat="topDesti in desti.topDesti | limitTo: 2 : 4">
+                    <h5>{{ topDesti.name }}</h5>
+                        <img ng-src="{{ topDesti.urlPhoto }}" 
+                             alt="{{ topDesti.altPhoto }}" 
+                             title="{{ topDesti.title }}" 
+                             class="{{ topDesti.class }}">
+                        <p>{{ topDesti.desc }}</p>
+                    </div>
+                </div>
+
+            </div> <!-- END OF grid-desti-article -->
+        </div> <!-- END OF article-southcebu -->
+
+        <div class="viewbutton-section">
+            <a ui-sref="seePackage({ id: desti.id })" class="button_fill">See Package</a>
+        </div>
+    </div> <!-- END OF desti_article -->
+</main>
